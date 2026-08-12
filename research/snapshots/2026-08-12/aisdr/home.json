@@ -1,0 +1,25 @@
+{
+  "competitor": "aisdr",
+  "page_type": "home",
+  "requested_url": "https://aisdr.com",
+  "final_url": "https://aisdr.com",
+  "redirected": false,
+  "http_status": 200,
+  "title": "Send deeply researched, high converting sales outreach | AiSDR",
+  "fetched_via": "firecrawl",
+  "fetched_at": "2026-08-12T07:26:01+00:00",
+  "snapshot_date": "2026-08-12",
+  "content_sha256": "6a668681999202b8bc54dee8ea4a4bb9f86a8e14f9c60a298c5f158b9c224b6a",
+  "extracted_chars": 23525,
+  "price_signals": [
+    "Free",
+    "$900",
+    "/mo",
+    "/month",
+    "$6,000",
+    "$1,800",
+    "per month"
+  ],
+  "screenshot": "home.png",
+  "extractor_version": 2
+}

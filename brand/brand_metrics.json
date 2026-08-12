@@ -1,0 +1,29 @@
+{
+  "source": "brand/logo/dozai-lockup.png",
+  "source_size": [
+    2000,
+    2000
+  ],
+  "lockup_bbox": [
+    512,
+    508,
+    1487,
+    1409
+  ],
+  "symbol_bbox": [
+    724,
+    508,
+    1274,
+    1069
+  ],
+  "wordmark_bbox": [
+    512,
+    1232,
+    1487,
+    1409
+  ],
+  "dot_height_px": 48,
+  "lockup_height_px": 902,
+  "clear_space_ratio": 0.0532,
+  "clear_space_basis": "height of the dot in the .AI wordmark (brand guide, Clear Space Rules)"
+}

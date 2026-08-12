@@ -1,0 +1,21 @@
+{
+  "competitor": "11x",
+  "page_type": "home",
+  "requested_url": "https://www.11x.ai",
+  "final_url": "https://www.11x.ai",
+  "redirected": false,
+  "http_status": 200,
+  "title": "11x \u2013 Digital workers, Human results",
+  "fetched_via": "firecrawl",
+  "fetched_at": "2026-08-12T07:26:29+00:00",
+  "snapshot_date": "2026-08-12",
+  "content_sha256": "d90b5a90e96eb3562ed178d5fd2fa8daf78266bcf2fdb0ecbd8bd494f2973043",
+  "extracted_chars": 6049,
+  "price_signals": [
+    "$70",
+    "free",
+    "$1"
+  ],
+  "screenshot": "home.png",
+  "extractor_version": 2
+}

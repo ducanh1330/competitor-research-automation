@@ -1,0 +1,19 @@
+{
+  "competitor": "apollo-io",
+  "page_type": "product",
+  "requested_url": "https://www.apollo.io/product",
+  "final_url": "https://www.apollo.io/product",
+  "redirected": false,
+  "http_status": 200,
+  "title": "AI Sales Platform | Apollo.io - Outbound, Inbound & Automation",
+  "fetched_via": "firecrawl",
+  "fetched_at": "2026-08-12T07:23:06+00:00",
+  "snapshot_date": "2026-08-12",
+  "content_sha256": "e3142a5b428df8c16f6cd2febc05cfba51a7fefa30a05da648a16bc2d019aa0e",
+  "extracted_chars": 9182,
+  "price_signals": [
+    "free"
+  ],
+  "screenshot": "product.png",
+  "extractor_version": 2
+}

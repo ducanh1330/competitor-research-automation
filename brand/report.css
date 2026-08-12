@@ -1,0 +1,612 @@
+/* DOZ.AI competitor report — print stylesheet.
+ *
+ * Every colour, size and family below is injected from brand/brand.json as a
+ * CSS custom property by tools/render_report.py. Nothing here hardcodes a brand
+ * value: if a --dozai-* variable is missing, that is a bug in brand.json, not a
+ * reason to fall back to a guess.
+ *
+ * The @font-face rules and the custom properties are emitted by the renderer
+ * into a <style> block ahead of this file.
+ */
+
+/* ------------------------------------------------------------------ reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  margin: 0;
+  background: var(--dozai-page-background);
+  color: var(--dozai-text-body);
+  font-family: var(--dozai-font-sans);
+  font-size: var(--dozai-body-size);
+  line-height: var(--dozai-body-line-height);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------- typography */
+
+h1, h2, h3 {
+  color: var(--dozai-text-primary);
+  margin: 0;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--dozai-h1-size);
+  font-weight: var(--dozai-h1-weight);
+  line-height: var(--dozai-h1-line-height);
+  letter-spacing: var(--dozai-h1-tracking);
+}
+
+h2 {
+  font-size: var(--dozai-h2-size);
+  font-weight: var(--dozai-h2-weight);
+  line-height: var(--dozai-h2-line-height);
+  letter-spacing: var(--dozai-h2-tracking);
+}
+
+h3 {
+  font-size: var(--dozai-h3-size);
+  font-weight: var(--dozai-h3-weight);
+  line-height: var(--dozai-h3-line-height);
+}
+
+p {
+  margin: 0 0 0.85em;
+}
+
+strong {
+  font-weight: 600;
+  color: var(--dozai-text-primary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Mono is reserved for metadata, labels, variables and technical parameters
+ * (brand guide, section 04). Never body copy. */
+.mono,
+.eyebrow,
+.meta,
+.source,
+.page-num,
+td.num,
+.tag {
+  font-family: var(--dozai-font-mono);
+  font-variant-ligatures: none;
+}
+
+.eyebrow {
+  font-size: var(--dozai-eyebrow-size);
+  font-weight: var(--dozai-eyebrow-weight);
+  letter-spacing: var(--dozai-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--dozai-text-muted);
+}
+
+.muted {
+  color: var(--dozai-text-muted);
+}
+
+.small {
+  font-size: var(--dozai-small-size);
+  line-height: var(--dozai-small-line-height);
+}
+
+/* ------------------------------------------------------------ page layout */
+
+/* Sections flow continuously rather than each forcing a fresh page. Forcing a
+ * break after every section wasted most of a page whenever a section ended
+ * partway down — e.g. a short "Market map" panel would leave the bottom half
+ * of a page blank before "Pricing" started on the next one. Only the cover
+ * gets a guaranteed page to itself, since it is a distinct full-bleed page by
+ * design; everything else packs in behind it. `.shead` still carries
+ * break-after:avoid (below) so a section heading is never orphaned alone at
+ * the bottom of a page. */
+.page + .page {
+  margin-top: 30px;
+}
+
+.cover {
+  page-break-after: always;
+  break-after: page;
+}
+
+section {
+  margin-bottom: 26px;
+}
+
+/* Keep a heading with the content it introduces. */
+h2, h3 {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.avoid-break {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* --------------------------------------------------------------- section  */
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  border-top: 1.5px solid var(--dozai-rule-strong);
+  padding-top: 8px;
+  margin-bottom: 16px;
+  break-after: avoid;
+}
+
+.section-head h2 {
+  flex: 1;
+}
+
+/* Each big section's leading number (01, 02, ...). A dedicated class rather
+ * than reusing .eyebrow, which stays muted/regular for captions elsewhere
+ * (cover stats, panel labels) — this one is bold and full-strength ink so it
+ * reads as a section marker, not a caption. text-transform is a no-op on
+ * digits but kept so the rule still applies if this ever carries letters. */
+.section-num {
+  font-family: var(--dozai-font-mono);
+  font-size: 15px; /* larger than the eyebrow token it used to share, since a
+                       section marker needs more visual weight than a caption */
+  font-weight: 700;
+  letter-spacing: var(--dozai-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--dozai-text-primary);
+}
+
+/* ------------------------------------------------------------------ cover */
+
+.cover {
+  height: 247mm; /* A4 height less the renderer's top+bottom margins */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cover-logo {
+  /* Height only — never both dimensions, so the mark cannot be distorted
+   * (brand guide: "Do not stretch or compress the system assets"). */
+  height: 78px;
+  width: auto;
+  display: block;
+}
+
+.cover-mid {
+  border-top: 1.5px solid var(--dozai-rule-strong);
+  padding-top: 22px;
+}
+
+.cover h1 {
+  max-width: 15ch;
+  margin-bottom: 18px;
+}
+
+.cover-sub {
+  font-size: 17px;
+  color: var(--dozai-text-muted);
+  max-width: 52ch;
+}
+
+.cover-facts {
+  display: flex;
+  gap: 34px;
+  border-top: 1px solid var(--dozai-rule-hairline);
+  padding-top: 14px;
+}
+
+.cover-fact .label {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.cover-fact .value {
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--dozai-text-primary);
+}
+
+/* ----------------------------------------------------------------- panels */
+
+.panel {
+  background: var(--dozai-surface-container);
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  break-inside: avoid;
+}
+
+.panel-dark {
+  background: var(--dozai-surface-inverse);
+  color: var(--dozai-text-on-inverse);
+  padding: 18px 20px;
+  break-inside: avoid;
+}
+
+.panel-dark h2,
+.panel-dark h3,
+.panel-dark strong {
+  color: var(--dozai-text-on-inverse);
+}
+
+/* ------------------------------------------------------------- key points */
+
+.finding {
+  display: flex;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--dozai-rule-hairline);
+  break-inside: avoid;
+}
+
+.finding:last-child {
+  border-bottom: none;
+}
+
+.finding-index {
+  flex: 0 0 auto;
+  width: 26px;
+  font-family: var(--dozai-font-mono);
+  font-size: var(--dozai-small-size);
+  color: var(--dozai-text-muted);
+  padding-top: 2px;
+}
+
+.finding-body {
+  flex: 1;
+}
+
+.finding-claim {
+  font-weight: 600;
+  color: var(--dozai-text-primary);
+  margin-bottom: 4px;
+}
+
+.so-what {
+  color: var(--dozai-text-body);
+}
+
+.so-what::before {
+  content: "So what — ";
+  font-weight: 600;
+  color: var(--dozai-text-primary);
+}
+
+/* ----------------------------------------------------------------- tables */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--dozai-small-size);
+  margin-bottom: 12px;
+}
+
+thead th {
+  text-align: left;
+  font-family: var(--dozai-font-mono);
+  font-size: var(--dozai-eyebrow-size);
+  font-weight: 500;
+  letter-spacing: var(--dozai-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--dozai-text-muted);
+  border-bottom: 1.5px solid var(--dozai-rule-strong);
+  padding: 0 10px 7px 0;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: 9px 10px 9px 0;
+  border-bottom: 1px solid var(--dozai-rule-hairline);
+  vertical-align: top;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+td.num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+th:last-child,
+td:last-child {
+  padding-right: 0;
+}
+
+/* The row representing DOZ.AI itself, so the reader never has to hunt for it. */
+tr.is-us td {
+  background: var(--dozai-surface-container);
+  font-weight: 600;
+  color: var(--dozai-text-primary);
+}
+
+/* Capability table: explicit words rather than filled/half/open circles. The
+ * half-circle needed a legend to decode and was routinely misread. */
+td.ctr { text-align: center; }
+.cap-table .cap-yes { color: var(--dozai-text-primary); font-weight: 600; }
+.cap-table .cap-partial,
+.cap-table .cap-no { color: var(--dozai-text-muted); }
+.cap-table th.col-us,
+.cap-table td.col-us { background: var(--dozai-surface-container); }
+.cap-table th.col-us { color: var(--dozai-text-primary); }
+/* The default row divider (tbody td { border-bottom }) is the same hairline
+ * grey as the DOZ.AI column's own shaded background, so it rendered invisibly
+ * inside that one column. Fixed by giving the WHOLE table a single, more
+ * visible divider colour — not just the shaded column — so every column's
+ * row lines match rather than DOZ.AI's looking darker than its neighbours. */
+.cap-table td { border-bottom-color: var(--dozai-text-muted); }
+
+/* Chart header block — every chart states its question and its as-at date. */
+.chart-question {
+  font-size: var(--dozai-small-size);
+  font-weight: 500;
+  color: var(--dozai-text-body);
+  margin: 0 0 1px;
+}
+
+.chart-date {
+  font-family: var(--dozai-font-mono);
+  font-size: var(--dozai-mono-size);
+  color: var(--dozai-text-muted);
+  margin: 0 0 6px;
+}
+
+/* ------------------------------------------------------------ competitors */
+
+.competitor {
+  break-inside: avoid;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--dozai-rule-hairline);
+}
+
+.competitor:last-child {
+  border-bottom: none;
+}
+
+.competitor-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 3px;
+}
+
+.tag {
+  font-size: var(--dozai-eyebrow-size);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dozai-text-muted);
+  border: 1px solid var(--dozai-rule-hairline);
+  padding: 2px 7px;
+  white-space: nowrap;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.col h3 {
+  font-size: var(--dozai-small-size);
+  font-family: var(--dozai-font-mono);
+  font-weight: 500;
+  letter-spacing: var(--dozai-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--dozai-text-muted);
+  margin-bottom: 6px;
+}
+
+ul {
+  margin: 0 0 0.6em;
+  padding-left: 17px;
+}
+
+li {
+  margin-bottom: 4px;
+}
+
+/* ----------------------------------------------------------- evidence tag */
+
+/* Every claim is either sourced or explicitly marked inferred. This is the
+ * report's core integrity guarantee, so it is visually unmistakable. */
+.source {
+  font-size: var(--dozai-mono-size);
+  color: var(--dozai-text-muted);
+  word-break: break-all;
+}
+
+.inferred {
+  font-family: var(--dozai-font-mono);
+  font-size: var(--dozai-mono-size);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dozai-text-muted);
+  border: 1px dashed var(--dozai-text-muted);
+  padding: 1px 5px;
+  margin-left: 6px;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------------------- charts */
+
+.chart {
+  margin: 14px 0 18px;
+  break-inside: avoid;
+}
+
+.chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chart-caption {
+  font-family: var(--dozai-font-mono);
+  font-size: var(--dozai-mono-size);
+  color: var(--dozai-text-muted);
+  margin-top: 5px;
+}
+
+/* The single sentence a chart exists to deliver. Set apart from body copy so a
+ * reader skimming charts still gets the conclusion. */
+.insight {
+  border-left: 2px solid var(--dozai-text-primary);
+  padding-left: 12px;
+  margin: 8px 0 18px;
+  font-weight: 500;
+  color: var(--dozai-text-primary);
+  break-inside: avoid;
+}
+
+/* ------------------------------------------------------- recommendations  */
+
+.rec {
+  display: flex;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--dozai-rule-hairline);
+  break-inside: avoid;
+}
+
+.rec:last-child {
+  border-bottom: none;
+}
+
+.rec-rank {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  background: var(--dozai-surface-inverse);
+  color: var(--dozai-text-on-inverse);
+  font-family: var(--dozai-font-mono);
+  font-size: var(--dozai-small-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rec-body {
+  flex: 1;
+}
+
+.rec-title {
+  font-weight: 600;
+  color: var(--dozai-text-primary);
+  margin-bottom: 3px;
+}
+
+/* Chips: impact / effort / a computed leverage tag / source. Matches the web
+ * version's treatment — this replaced a 3x3 impact-effort scatter chart that
+ * needed dodging to stay readable once several recommendations landed on the
+ * same cell, and even readable said nothing these three words don't already
+ * say directly. */
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.chip {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dozai-text-muted);
+  border: 1px solid var(--dozai-rule-hairline);
+  padding: 2px 7px;
+  white-space: nowrap;
+}
+
+.chip-lev {
+  border-color: var(--dozai-text-primary);
+  color: var(--dozai-text-primary);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------- changes  */
+
+.change {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--dozai-rule-hairline);
+  break-inside: avoid;
+}
+
+.change:last-child {
+  border-bottom: none;
+}
+
+.change-price {
+  background: var(--dozai-surface-container);
+  padding: 9px 12px;
+  margin-top: 7px;
+  font-family: var(--dozai-font-mono);
+  font-size: var(--dozai-mono-size);
+}
+
+.diff-line {
+  font-family: var(--dozai-font-mono);
+  font-size: var(--dozai-mono-size);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.diff-add {
+  color: var(--dozai-text-primary);
+  font-weight: 600;
+}
+
+.diff-add::before {
+  content: "+";
+  display: inline-block;
+  width: 1.1em;
+}
+
+.diff-del {
+  color: var(--dozai-text-muted);
+  text-decoration: line-through;
+}
+
+/* inline-block makes the marker an atomic inline box, which stops the parent's
+ * line-through propagating into it. text-decoration:none alone cannot do this —
+ * decoration propagates to descendants and is not removable by them. */
+.diff-del::before {
+  content: "-";
+  display: inline-block;
+  width: 1.1em;
+  text-decoration: none;
+}
+
+/* -------------------------------------------------------------- appendix  */
+
+.appendix table {
+  font-size: var(--dozai-mono-size);
+}
+
+.appendix td {
+  font-family: var(--dozai-font-mono);
+  padding: 6px 10px 6px 0;
+}
+
+.limitations {
+  border-left: 2px solid var(--dozai-text-muted);
+  padding-left: 13px;
+  margin-top: 14px;
+}

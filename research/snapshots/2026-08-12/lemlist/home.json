@@ -1,0 +1,19 @@
+{
+  "competitor": "lemlist",
+  "page_type": "home",
+  "requested_url": "https://www.lemlist.com",
+  "final_url": "https://www.lemlist.com",
+  "redirected": false,
+  "http_status": 200,
+  "title": "lemlist | The AI Outbound Platform for Relevant Outreach at Every Scale",
+  "fetched_via": "firecrawl",
+  "fetched_at": "2026-08-12T07:25:00+00:00",
+  "snapshot_date": "2026-08-12",
+  "content_sha256": "da21a2e1c18ce4df09f53c5503d95d409765ad0aef567c7a172a8e81db298f97",
+  "extracted_chars": 7591,
+  "price_signals": [
+    "free"
+  ],
+  "screenshot": "home.png",
+  "extractor_version": 2
+}

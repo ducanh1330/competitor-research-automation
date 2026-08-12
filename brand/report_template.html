@@ -1,0 +1,466 @@
+{#
+  DOZ.AI competitor report template.
+
+  Contract: this file contains STRUCTURE only. Every colour, size, family and
+  logo path arrives via brand.json (as CSS custom properties injected by
+  tools/render_report.py). No hex code, font name or px size may appear here.
+
+  Every section is optional — it renders only if its data is present, so the
+  same template serves a baseline run (no "what changed" section) and a
+  recurring one.
+#}
+
+{#
+  Renders the evidence trail for a claim. Called after every claim-bearing
+  block. A claim with no sources renders nothing here, which is exactly why
+  the analysis workflow requires each claim to carry either a source or an
+  explicit `inferred` flag — a silently unsourced claim would otherwise be
+  indistinguishable from a sourced one.
+#}
+{% macro sources(items) -%}
+{%- if items -%}
+<div class="source" style="margin-top:5px;">
+  {%- for s in items -%}
+    {{ s.url }} <span class="mono">({{ s.snapshot_date }})</span>{% if not loop.last %} &nbsp;·&nbsp; {% endif %}
+  {%- endfor -%}
+</div>
+{%- endif -%}
+{%- endmacro %}
+
+<div class="page cover">
+  <div>
+    {# height set in CSS, width auto: aspect ratio preserved per brand guide #}
+    <img class="cover-logo" src="{{ logo.lockup }}" alt="{{ brand.name }}">
+  </div>
+
+  <div class="cover-mid">
+    <div class="eyebrow" style="margin-bottom:14px;">Competitor Analysis &middot; {{ meta.report_month_label }}</div>
+    <h1>{{ meta.title }}</h1>
+    <p class="cover-sub">{{ meta.subtitle }}</p>
+  </div>
+
+  <div class="cover-facts">
+    <div class="cover-fact">
+      <span class="label eyebrow">Competitors</span>
+      <span class="value">{{ meta.competitor_count }}</span>
+    </div>
+    <div class="cover-fact">
+      <span class="label eyebrow">Pages tracked</span>
+      <span class="value">{{ meta.pages_tracked }}</span>
+    </div>
+    <div class="cover-fact">
+      <span class="label eyebrow">Run type</span>
+      <span class="value">{{ meta.run_type_label }}</span>
+    </div>
+    <div class="cover-fact">
+      <span class="label eyebrow">Generated</span>
+      <span class="value">{{ meta.generated_date }}</span>
+    </div>
+  </div>
+</div>
+
+{# ------------------------------------------------------------ summary --- #}
+{% if executive_summary %}
+<div class="page">
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <h2>Executive summary</h2>
+  </div>
+
+  {% for item in executive_summary %}
+  <div class="finding">
+    <div class="finding-index">{{ "%02d"|format(loop.index) }}</div>
+    <div class="finding-body">
+      <div class="finding-claim">{{ item.finding }}{% if item.inferred %}<span class="inferred">inferred</span>{% endif %}</div>
+      <div class="so-what">{{ item.so_what }}</div>
+      {{ sources(item.sources) }}
+    </div>
+  </div>
+  {% endfor %}
+
+  {% if market_map %}
+  <section style="margin-top:26px;">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Market map</h2>
+    </div>
+    {% for tier, members in market_map.tiers.items() %}
+      {% if members %}
+      <div class="panel">
+        <div class="eyebrow" style="margin-bottom:7px;">{{ tier }} &mdash; {{ members|length }}</div>
+        <div>{{ members|join(" · ") }}</div>
+      </div>
+      {% endif %}
+    {% endfor %}
+    {% if market_map.our_position %}
+    <div class="panel-dark">
+      <div class="eyebrow" style="margin-bottom:7px; color:inherit; opacity:.7;">Where {{ brand.name }} sits</div>
+      <div>{{ market_map.our_position }}</div>
+    </div>
+    {% endif %}
+  </section>
+  {% endif %}
+</div>
+{% endif %}
+
+{# ------------------------------------------------------------ pricing --- #}
+{% if pricing %}
+<div class="page">
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <h2>Pricing &amp; business model</h2>
+  </div>
+
+  {% if pricing.intro %}<p>{{ pricing.intro }}</p>{% endif %}
+
+  {# Chart 1: where we sit. Chart 2: when we become cheaper. Each carries a
+     title, the question it answers, and the as-at date. #}
+  {% if charts.price_positioning %}
+  <div class="chart avoid-break">
+    <h3 style="margin-bottom:2px;">{{ pricing.price_positioning.title }}</h3>
+    <p class="chart-question">{{ pricing.price_positioning.question }}</p>
+    <p class="chart-date">Prices as at {{ pricing.price_positioning.as_at }}</p>
+    {{ charts.price_positioning }}
+    <div class="chart-caption">{{ pricing.price_positioning.caption }}</div>
+  </div>
+  {% if pricing.price_positioning.insight %}
+  <p class="insight">{{ pricing.price_positioning.insight }}</p>
+  {% endif %}
+  {% endif %}
+
+  {% if charts.cost_curve %}
+  <div class="chart avoid-break">
+    <h3 style="margin-bottom:2px;">{{ pricing.cost_model.title }}</h3>
+    <p class="chart-question">{{ pricing.cost_model.question }}</p>
+    <p class="chart-date">Prices as at {{ pricing.cost_model.as_at }}</p>
+    {{ charts.cost_curve }}
+    {% if pricing.cost_model.caption %}<div class="chart-caption">{{ pricing.cost_model.caption }}</div>{% endif %}
+  </div>
+  {% if pricing.cost_model.insight %}
+  <p class="insight">{{ pricing.cost_model.insight }}</p>
+  {% endif %}
+  {% endif %}
+
+  {% if pricing.rows %}
+  <table>
+    <thead>
+      <tr>
+        <th style="width:22%">Company</th>
+        <th style="width:16%">Model</th>
+        <th style="width:14%">Entry</th>
+        <th style="width:14%">Mid tier</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in pricing.rows %}
+      <tr {% if row.is_us %}class="is-us"{% endif %}>
+        <td>{{ row.name }}</td>
+        <td>{{ row.model }}</td>
+        <td class="num">{{ row.entry }}</td>
+        <td class="num">{{ row.mid }}</td>
+        <td>{{ row.notes }}{% if row.inferred %}<span class="inferred">inferred</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  {% if pricing.omitted %}
+  <p class="chart-caption">Omitted from this table: {{ pricing.omitted|join(", ") }} &mdash;
+     no published or capturable pricing. See limitations.</p>
+  {% endif %}
+
+  {% for note in pricing.observations %}
+  <div class="finding">
+    <div class="finding-index">{{ "%02d"|format(loop.index) }}</div>
+    <div class="finding-body">
+      <div class="finding-claim">{{ note.finding }}</div>
+      {% if note.so_what %}<div class="so-what">{{ note.so_what }}</div>{% endif %}
+      {{ sources(note.sources) }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ---------------------------------------------------------- messaging --- #}
+{% if messaging %}
+<div class="page">
+  <div class="section-head">
+    <span class="section-num">04</span>
+    <h2>Marketing &amp; messaging</h2>
+  </div>
+
+  {% if messaging.intro %}<p>{{ messaging.intro }}</p>{% endif %}
+
+  {% if messaging.rows %}
+  <table>
+    <thead>
+      <tr>
+        <th style="width:20%">Company</th>
+        <th style="width:42%">Headline claim</th>
+        <th>Who they say it&rsquo;s for</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in messaging.rows %}
+      <tr {% if row.is_us %}class="is-us"{% endif %}>
+        <td>{{ row.name }}</td>
+        <td>{{ row.headline }}</td>
+        <td>{{ row.audience }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  {% if messaging.crowded %}
+  <div class="panel avoid-break">
+    <div class="eyebrow" style="margin-bottom:7px;">Crowded language &mdash; claims more than one player makes</div>
+    <ul>{% for claim in messaging.crowded %}<li>{{ claim }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+
+  {% if messaging.whitespace %}
+  <div class="panel-dark avoid-break">
+    <div class="eyebrow" style="margin-bottom:7px; color:inherit; opacity:.7;">Unclaimed ground</div>
+    <ul>{% for claim in messaging.whitespace %}<li>{{ claim }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
+{# ----------------------------------------------------------- features --- #}
+{% if features %}
+<div class="page">
+  <div class="section-head">
+    <span class="section-num">05</span>
+    <h2>Products, services &amp; features</h2>
+  </div>
+
+  {% if features.intro %}<p>{{ features.intro }}</p>{% endif %}
+
+  {% if features.matrix %}
+  {% if features.table_title %}
+  <h3 style="margin:20px 0 2px;">{{ features.table_title }}</h3>
+  <p class="chart-date">Assessed {{ features.as_at }}</p>
+  {% endif %}
+  <table class="cap-table">
+    <thead>
+      <tr>
+        <th style="width:34%">Capability</th>
+        {% for col in features.columns %}
+        <th style="text-align:center"{% if loop.first %} class="col-us"{% endif %}>{{ col }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in features.matrix %}
+      <tr>
+        <td>{{ row.capability }}</td>
+        {% for cell in row.cells %}
+        {# Words, not icons. The half-filled circle was routinely misread. #}
+        <td class="ctr cap-{{ cell }}{% if loop.first %} col-us{% endif %}">
+          {%- if cell == "yes" %}Yes{% elif cell == "partial" %}Partial{% endif -%}
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if features.legend %}<div class="chart-caption">{{ features.legend }}</div>{% endif %}
+  {% endif %}
+
+  <div class="two-col" style="margin-top:20px;">
+    {% if features.gaps_ours %}
+    <div class="col avoid-break">
+      <h3>They have, we don&rsquo;t</h3>
+      <ul>{% for gap in features.gaps_ours %}<li>{{ gap }}</li>{% endfor %}</ul>
+    </div>
+    {% endif %}
+    {% if features.gaps_theirs %}
+    <div class="col avoid-break">
+      <h3>We have, they don&rsquo;t</h3>
+      <ul>{% for gap in features.gaps_theirs %}<li>{{ gap }}</li>{% endfor %}</ul>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{# -------------------------------------------------------- competitors --- #}
+{% if competitors %}
+<div class="page">
+  <div class="section-head">
+    <span class="section-num">06</span>
+    <h2>Strengths &amp; weaknesses vs {{ brand.name }}</h2>
+  </div>
+
+  {% for c in competitors %}
+  <div class="competitor">
+    <div class="competitor-head">
+      <h3>{{ c.name }}</h3>
+      <span class="tag">{{ c.tier }}</span>
+    </div>
+    <div class="source">{{ c.url }}</div>
+    {% if c.one_liner %}<p style="margin-top:7px;">{{ c.one_liner }}</p>{% endif %}
+
+    <div class="two-col">
+      <div class="col">
+        <h3>Where they beat us</h3>
+        <ul>{% for item in c.they_win %}<li>{{ item }}</li>{% endfor %}</ul>
+      </div>
+      <div class="col">
+        <h3>Where we beat them</h3>
+        <ul>{% for item in c.we_win %}<li>{{ item }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+    {{ sources(c.sources) }}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ------------------------------------------------------ what's working --- #}
+{% if whats_working %}
+<div class="page">
+  <div class="section-head">
+    <span class="section-num">07</span>
+    <h2>What&rsquo;s working for them</h2>
+  </div>
+  <p class="muted small">Tactics with observable evidence behind them. Evidence here is
+     public signal, not performance data &mdash; see limitations in the appendix.</p>
+
+  {% for item in whats_working %}
+  <div class="finding">
+    <div class="finding-index">{{ "%02d"|format(loop.index) }}</div>
+    <div class="finding-body">
+      <div class="finding-claim">{{ item.tactic }}{% if item.inferred %}<span class="inferred">inferred</span>{% endif %}</div>
+      <div class="so-what">{{ item.why_it_works }}</div>
+      {% if item.evidence %}<p class="small muted" style="margin-top:5px;">Evidence: {{ item.evidence }}</p>{% endif %}
+      {{ sources(item.sources) }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ---------------------------------------------------- recommendations --- #}
+{% if recommendations %}
+<div class="page">
+  <div class="section-head">
+    <span class="section-num">08</span>
+    <h2>Where {{ brand.name }} can improve</h2>
+  </div>
+
+  {# A 3x3 impact/effort scatter used to sit here. With several
+     recommendations sharing "high impact, low effort" it needed dodging just
+     to stay readable, and even readable it said nothing the chips below don't
+     already say directly — every recommendation states its own impact,
+     effort and a computed leverage tag inline, matching the web version's
+     treatment rather than duplicating the same three facts as a chart. #}
+  {% for rec in recommendations %}
+  <div class="rec">
+    <div class="rec-rank">{{ loop.index }}</div>
+    <div class="rec-body">
+      <div class="rec-title">{{ rec.title }}</div>
+      <div>{{ rec.rationale }}</div>
+      <div class="chips">
+        <span class="chip mono">impact {{ rec.impact }}</span>
+        <span class="chip mono">effort {{ rec.effort }}</span>
+        <span class="chip chip-lev mono">{{ rec.leverage }}</span>
+        {% if rec.traces_to %}<span class="chip mono">from {{ rec.traces_to }}</span>{% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ----------------------------------------------------------- changes  --- #}
+{% if changes and changes.competitors %}
+<div class="page">
+  <div class="section-head">
+    <span class="section-num">09</span>
+    <h2>What changed since {{ changes.since_label }}</h2>
+  </div>
+  <p class="muted small">Computed by diffing snapshots, not recalled. Pages whose content
+     hash was unchanged are omitted.</p>
+
+  {% for comp in changes.competitors %}
+  <div class="change">
+    <div class="competitor-head">
+      <h3>{{ comp.name }}</h3>
+      <span class="tag">{{ comp.pages_changed }} page{{ "" if comp.pages_changed == 1 else "s" }} changed</span>
+    </div>
+    {% for page in comp.pages %}
+    <div style="margin-top:9px;">
+      <div class="eyebrow">{{ page.page_type }} &nbsp;&middot;&nbsp; +{{ page.lines_added }} / &minus;{{ page.lines_removed }}</div>
+      {% if page.price_change %}
+      <div class="change-price">
+        {% if page.price_change.added %}<div class="diff-line diff-add">{{ page.price_change.added|join(", ") }}</div>{% endif %}
+        {% if page.price_change.removed %}<div class="diff-line diff-del">{{ page.price_change.removed|join(", ") }}</div>{% endif %}
+      </div>
+      {% endif %}
+      {% if page.highlights %}
+      <div style="margin-top:6px;">
+        {% for line in page.highlights %}
+        <div class="diff-line {{ 'diff-add' if line.kind == 'add' else 'diff-del' }}">{{ line.text }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if page.interpretation %}<p class="small" style="margin-top:6px;">{{ page.interpretation }}</p>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ---------------------------------------------------------- appendix  --- #}
+<div class="page appendix">
+  <div class="section-head">
+    <span class="section-num">{{ "%02d"|format(section_count) }}</span>
+    <h2>Sources &amp; method</h2>
+  </div>
+
+  <p class="small">Every factual claim in this report traces to a page captured on the date
+     shown. Claims that could not be sourced are marked
+     <span class="inferred">inferred</span> where they appear.</p>
+
+  {% if appendix.sources %}
+  <table>
+    <thead>
+      <tr>
+        <th style="width:18%">Company</th>
+        <th style="width:16%">Pages captured</th>
+        <th style="width:13%">Captured</th>
+        <th>Primary source</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for src in appendix.sources %}
+      <tr>
+        <td>{{ src.competitor }}</td>
+        <td>{{ src.page_list }}</td>
+        <td>{{ src.snapshot_date }}</td>
+        <td class="source">{{ src.url }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  {% if appendix.limitations %}
+  <div class="limitations">
+    <div class="eyebrow" style="margin-bottom:7px;">Limitations</div>
+    <ul class="small">{% for item in appendix.limitations %}<li>{{ item }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+
+  <div style="margin-top:30px; padding-top:14px; border-top:1px solid var(--dozai-rule-hairline);">
+    <img src="{{ logo.symbol }}" alt="{{ brand.name }}" style="height:26px; width:auto; display:block; margin-bottom:9px;">
+    <div class="source">{{ meta.footer_note }}</div>
+  </div>
+</div>

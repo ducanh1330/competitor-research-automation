@@ -1,0 +1,144 @@
+{
+  "_comment": "Structured form of profile/company.md. Fields with null or empty values are UNCONFIRMED gaps, not established facts — downstream workflows must not treat them as known. Captured 2026-08-12.",
+  "captured_on": "2026-08-12",
+  "confidence": "partial",
+
+  "name": "DOZ.AI",
+  "brand_name": "DOZ.AI",
+  "brand_relationship_confirmed": true,
+  "brand_note": "Confirmed 2026-08-12: DOZ.AI is the company. 'Get Leads with AI' describes what it does — scrape leads, build lead lists, run personalized outreach at scale — and is not a separate entity.",
+  "website": null,
+
+  "category": "AI-powered lead generation and outbound sales automation",
+  "adjacent_categories": [
+    "sales intelligence / B2B data providers",
+    "sales engagement platforms",
+    "AI SDR / autonomous outbound agents"
+  ],
+
+  "one_liner": "We help you scrape leads, build lead lists, and do personalized outreach at scale using AI.",
+  "differentiator": "All-in-one platform — scraping, list building and outreach in a single product rather than a stack of tools.",
+  "differentiator_risk": "CONTESTED. 'All-in-one' is used verbatim on both Apollo.io's and Lemlist's own pages (snapshots 2026-08-12). As a differentiator this phrase is already owned by two larger players; as a capability claim it puts us in a feature-count and database-size comparison we cannot win.",
+
+  "offerings": [
+    { "name": "Lead scraping", "description": "Sourcing prospect data" },
+    { "name": "Lead list building", "description": "Assembling and enriching targeted prospect lists" },
+    { "name": "AI personalized outreach", "description": "Individualised messaging at volume" }
+  ],
+
+  "_capabilities_comment": "FICTIONAL feature set for the demonstration company, defined so the capability matrix can include us. Chosen to be plausible for an agency-focused entrant rather than uniformly favourable — the gaps are deliberate, since a matrix where we win every row would be useless.",
+  "capabilities": {
+    "white_label": "partial",
+    "white_label_note": "Growth tier and above only; not on Starter",
+    "client_workspaces": "yes",
+    "client_workspaces_note": "Unlimited on every tier, never metered — the deliberate contrast with Smartlead's $29/workspace",
+    "multi_client_inbox": "yes",
+    "markets_to_agencies": "yes",
+    "unlimited_mailboxes": "yes",
+    "built_in_lead_database": "partial",
+    "built_in_lead_database_note": "Scrapes to order rather than shipping a static database; smaller coverage than Apollo's 270M or Lemlist's 650M",
+    "usage_credit_pricing": "yes",
+    "free_tier": "no",
+    "free_tier_note": "Trial only — a known gap against Apollo, Clay and Smartlead",
+    "annual_discount": "no",
+    "annual_discount_note": "Known gap; competitors run 17-29%",
+    "byo_llm_key": "yes",
+    "multichannel": "no",
+    "multichannel_note": "Email only; Lemlist and Apollo both do LinkedIn/phone/SMS"
+  },
+
+  "icp": {
+    "segment": "Marketing agencies",
+    "segment_confirmed": "2026-08-12",
+    "company_size": null,
+    "roles": ["agency owner", "head of growth", "account/delivery lead"],
+    "roles_confidence": "inferred",
+    "industries": ["marketing agencies", "lead-gen agencies"],
+    "industries_avoided": [],
+    "geographies": ["United States"],
+    "geography_confirmed": "2026-08-12",
+    "geography_note": "US market, confirmed 2026-08-12 (revised from an earlier Australia assumption). This puts us in the same market and currency as every tracked competitor, so the earlier FX and Spam Act 2003 differentiators no longer apply and have been withdrawn from the analysis. Competing head-on in the US means differentiation must come from product and pricing structure, not geography.",
+    "segment_note": "Agencies are a distinct buyer, not a subset of SMB. They run outbound on behalf of many clients, so multi-client workspaces, white-labelling, per-client reporting and reseller economics matter more than single-team features. Competitor relevance must be re-judged on those axes."
+  },
+
+  "problem_solved": "Outbound pipeline generation without added headcount — replacing manual prospecting and list building, and making personalised outreach viable at volume.",
+
+  "pricing": {
+    "disclosed": false,
+    "model": "credit-based usage",
+    "tiers_published": true,
+    "currency": "USD",
+    "_tiers_comment": "FICTIONAL. DOZ.AI is a demonstration company; these tiers were invented to exercise the pipeline and sit inside the stated $200-500/mo band. They are flagged as placeholders everywhere they surface in a report.",
+    "tiers": [
+      { "name": "Starter", "price_usd": 249, "credits": 25000, "client_workspaces": "unlimited", "seats": "unlimited", "white_label": false },
+      { "name": "Growth", "price_usd": 399, "credits": 60000, "client_workspaces": "unlimited", "seats": "unlimited", "white_label": true },
+      { "name": "Scale", "price_usd": 499, "credits": 100000, "client_workspaces": "unlimited", "seats": "unlimited", "white_label": true }
+    ],
+    "credit_unit": {
+      "definition": "One credit = one enriched contact OR one AI-personalised message. A single unit covers both scrape and send, unlike Clay's separate Data Credits and Actions.",
+      "effective_cost_usd": 0.01,
+      "rollover": "unused credits roll over for one billing cycle",
+      "note": "FICTIONAL — invented for the demonstration."
+    },
+    "pricing_axis": "per_credit_usage",
+    "pricing_axis_confirmed": "2026-08-12",
+    "pricing_axis_note": "Credit-based usage pricing. This CORRECTS an earlier per-seat assumption. Consequence: we are aligned with where the category is moving (Clay prices on Data Credits + Actions; Apollo bundles credits; Instantly meters credits) rather than exposed by it. Credit pricing also suits agencies, whose usage varies per client and who cannot predict seat counts. The live question is no longer 'is our axis wrong' but 'is our credit unit legible next to Clay's dual-currency model'.",
+    "price_band": "200-500 per month",
+    "price_band_confirmed": "2026-08-12",
+    "price_band_currency": "UNCONFIRMED — assumed AUD given Australian base. This materially changes the analysis: at ~0.65 USD/AUD, A$500 is about US$325, which sits mid-pool; if the band is USD it sits considerably higher. Confirm before acting on the pricing section.",
+    "price_band_note": "Mid-range. Above the $39-119 tooling tier (Smartlead, Instantly, Apollo entry) and well below managed AI SDR services ($900+, AiSDR). The relevant comparison is therefore not competitor entry prices but their effective cost at agency scale, where several land in the same band.",
+    "typical_deal_size": null,
+    "contract_length": null
+  },
+
+  "channels": {
+    "active": [],
+    "tried_and_dropped": [],
+    "sales_motion": "self-serve or light-touch",
+    "sales_motion_confidence": "inferred",
+    "uses_own_product_for_outbound": null
+  },
+
+  "self_assessment": {
+    "strengths": [],
+    "weaknesses": [],
+    "lose_deals_to": [],
+    "loss_reasons": [],
+    "stated_situation": "Seeing a lot of competitors appear in the market."
+  },
+
+  "goals_6_12_months": [],
+  "stated_goals": [
+    "Understand our opportunities in the market",
+    "Identify what we need to be doing better"
+  ],
+
+  "search_terms": [
+    "AI lead generation software",
+    "AI SDR",
+    "AI sales development representative",
+    "lead scraping tool",
+    "lead list building software",
+    "AI personalized cold outreach",
+    "cold email automation AI personalization",
+    "B2B prospecting data and outreach platform",
+    "sales engagement platform for startups",
+    "outbound automation for small teams"
+  ],
+
+  "unconfirmed_fields": [
+    "website",
+    "differentiator",
+    "icp.company_size",
+    "icp.industries",
+    "icp.geographies",
+    "pricing.tiers",
+    "pricing.pricing_axis",
+    "channels.active",
+    "self_assessment.strengths",
+    "self_assessment.weaknesses",
+    "self_assessment.lose_deals_to",
+    "goals_6_12_months",
+    "brand_relationship_confirmed"
+  ]
+}

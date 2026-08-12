@@ -1,0 +1,46 @@
+# Secrets / credentials
+.env
+.env.*
+!.env.example
+credentials.json
+token.json
+*.pem
+
+# Intermediates — disposable, regenerated as needed (keep the dir, drop contents)
+.tmp/*
+!.tmp/.gitkeep
+
+# Snapshot payloads: the raw page HTML and full-page screenshots.
+#
+# research/ is otherwise DURABLE and tracked on purpose — the dated snapshots
+# are the baseline that month-over-month diffing compares against, and
+# re-fetching cannot recover what a competitor's page said last month.
+#
+# But only the extracted .md and the .json metadata are needed for that:
+# diff_snapshots.py reads the extracted text and the content hash, never the
+# .html or .png. Those two account for 40MB of a 42MB repo and amount to
+# republishing competitors' entire pages, so they stay local. Everything the
+# pipeline and the evidence trail need is still committed.
+research/snapshots/**/*.html
+research/snapshots/**/*.png
+
+# Print intermediate from `render_report.py --keep-html`. The PDF is the
+# deliverable; report_web.html is the published web version. This one is just
+# what Chromium consumed on the way to the PDF.
+research/reports/**/report.html
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# OS / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/

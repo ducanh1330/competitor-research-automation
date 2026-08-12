@@ -1,0 +1,24 @@
+{
+  "competitor": "smartlead",
+  "page_type": "home",
+  "requested_url": "https://www.smartlead.ai",
+  "final_url": "https://www.smartlead.ai",
+  "redirected": false,
+  "http_status": 200,
+  "title": "Smartlead | Cold Email Software for Sales Teams That Run Outbound at Scale",
+  "fetched_via": "firecrawl",
+  "fetched_at": "2026-08-12T07:25:34+00:00",
+  "snapshot_date": "2026-08-12",
+  "content_sha256": "63e3cba3ff2fdff133ffc19a7def3d19aa696c3584b2d24929cb99b5752cf2ab",
+  "extracted_chars": 16247,
+  "price_signals": [
+    "Free",
+    "/month",
+    "$200",
+    "$39",
+    "$94",
+    "$174"
+  ],
+  "screenshot": "home.png",
+  "extractor_version": 2
+}

@@ -1,0 +1,30 @@
+{
+  "competitor": "lemlist",
+  "page_type": "pricing",
+  "requested_url": "https://www.lemlist.com/pricing",
+  "final_url": "https://www.lemlist.com/pricing",
+  "redirected": false,
+  "http_status": 200,
+  "title": "lemlist pricing\ufe31The all-in-one platform for precise outbound at any scale",
+  "fetched_via": "firecrawl",
+  "fetched_at": "2026-08-12T07:25:18+00:00",
+  "snapshot_date": "2026-08-12",
+  "content_sha256": "2b3e18ea3e38a62fd3cdaf6cf08796b5e43c9c695ae4e96abb0f2b4e70728a05",
+  "extracted_chars": 39666,
+  "price_signals": [
+    "free",
+    "$69",
+    "$55",
+    "/month",
+    "/mo",
+    "$109",
+    "$87",
+    "/User",
+    "$\n10",
+    "$0.01",
+    "$10",
+    "per user"
+  ],
+  "screenshot": "pricing.png",
+  "extractor_version": 2
+}

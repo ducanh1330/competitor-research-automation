@@ -1,0 +1,110 @@
+{
+  "_comment": "APPROVED SET. Prices below are INDICATIVE ONLY, taken from third-party comparison articles during discovery; they are NOT evidence and must never appear in a report. The analysis run replaces every one with a first-party snapshot of the competitor's own pricing page.",
+  "discovered_on": "2026-08-12",
+  "approved_on": "2026-08-12",
+  "approved_by_user": true,
+  "analysis_priority": "pricing — user's stated focus is where Get Leads with AI is being undercut. Depth goes into what is actually included at each price point and where cheap tiers impose hidden caps.",
+
+  "market_structure_note": "This category is layered rather than flat: Apollo is a data/prospecting layer, Clay an enrichment/workflow layer, Instantly a sending-infrastructure layer, Lemlist a personalization/multichannel layer. Get Leads with AI spans scraping + list building + outreach, so it competes with several layers at once — which is likely why competitors appear to be multiplying.",
+
+  "competitors": [
+    {
+      "slug": "apollo-io",
+      "name": "Apollo.io",
+      "tier": "direct",
+      "rationale": "Closest structural match — B2B database, list building and outreach sequences in one product, aimed at SMB. The reference point buyers compare everything against.",
+      "evidence_url": "https://www.apollo.io/pricing",
+      "indicative_price": "~$49-59/user/mo",
+      "pages": {
+        "home": "https://www.apollo.io",
+        "pricing": "https://www.apollo.io/pricing",
+        "product": "https://www.apollo.io/product"
+      },
+      "pricing_gated": false
+    },
+    {
+      "slug": "instantly",
+      "name": "Instantly",
+      "tier": "direct",
+      "rationale": "Price leader for the SMB segment, bundling a lead database with sending. Sets the floor our pricing is judged against.",
+      "evidence_url": "https://instantly.ai/pricing",
+      "indicative_price": "~$37/mo entry",
+      "pages": {
+        "home": "https://instantly.ai",
+        "pricing": "https://instantly.ai/pricing"
+      },
+      "pricing_gated": false
+    },
+    {
+      "slug": "clay",
+      "name": "Clay",
+      "tier": "direct",
+      "rationale": "The AI-native benchmark for scraping and list building specifically — Claygent does web research per contact. Premium-priced, which makes it the useful contrast to Instantly.",
+      "evidence_url": "https://www.clay.com/pricing",
+      "indicative_price": "~$134/mo",
+      "pages": {
+        "home": "https://www.clay.com",
+        "pricing": "https://www.clay.com/pricing"
+      },
+      "pricing_gated": false
+    },
+    {
+      "slug": "lemlist",
+      "name": "Lemlist",
+      "tier": "direct",
+      "rationale": "Multichannel outreach with a lead database and AI personalization — overlaps our outreach claim most directly. Raised prices in Feb 2026, worth watching.",
+      "evidence_url": "https://www.lemlist.com/pricing",
+      "indicative_price": "~$39-99/seat/mo",
+      "pages": {
+        "home": "https://www.lemlist.com",
+        "pricing": "https://www.lemlist.com/pricing"
+      },
+      "pricing_gated": false
+    },
+    {
+      "slug": "smartlead",
+      "name": "Smartlead",
+      "tier": "direct",
+      "rationale": "Direct SMB cold-email competitor at a near-identical entry price to Instantly. Included to see whether the $37-39 floor is a two-player anomaly or the market rate.",
+      "evidence_url": "https://www.smartlead.ai/pricing",
+      "indicative_price": "~$39/mo entry",
+      "pages": {
+        "home": "https://www.smartlead.ai",
+        "pricing": "https://www.smartlead.ai/pricing"
+      },
+      "pricing_gated": false
+    },
+    {
+      "slug": "aisdr",
+      "name": "AiSDR",
+      "tier": "adjacent",
+      "rationale": "Packaged AI SDR aimed at startups — same buyer and budget, different shape. Represents the 'done-for-you agent' alternative to our toolkit approach.",
+      "evidence_url": "https://aisdr.com/pricing",
+      "pages": {
+        "home": "https://aisdr.com",
+        "pricing": "https://aisdr.com/pricing"
+      },
+      "pricing_gated": false
+    },
+    {
+      "slug": "11x",
+      "name": "11x",
+      "tier": "aspirational",
+      "rationale": "Fully autonomous 'AI digital worker' positioning, heavily funded. Indicates where the category's narrative is heading and how far buyer expectations may move.",
+      "evidence_url": "https://www.11x.ai",
+      "pages": {
+        "home": "https://www.11x.ai"
+      },
+      "pricing_gated": true,
+      "notes": "Pricing not published — contact sales. Tracked for positioning, not price."
+    }
+  ],
+
+  "runners_up": [
+    { "name": "SyncGTM", "why": "Closest pipeline match (scrape → enrich → verify → CRM) but small; swap in if we want a same-size comparator" },
+    { "name": "Persana", "why": "AI SDR workflow builder for startups; overlaps AiSDR" },
+    { "name": "Artisan", "why": "Autonomous AI SDR; overlaps 11x for the aspirational slot" },
+    { "name": "LeadFuze", "why": "Automated list building at $147/mo; narrower than us" },
+    { "name": "ZoomInfo / Cognism", "why": "Enterprise data incumbents — sets the data-quality bar but wrong buyer for SMB comparison" }
+  ]
+}

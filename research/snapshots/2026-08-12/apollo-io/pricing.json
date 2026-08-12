@@ -1,0 +1,28 @@
+{
+  "competitor": "apollo-io",
+  "page_type": "pricing",
+  "requested_url": "https://www.apollo.io/pricing",
+  "final_url": "https://www.apollo.io/pricing",
+  "redirected": false,
+  "http_status": 200,
+  "title": "Apollo.io Pricing Plans | Sales Intelligence Platform Pricing",
+  "fetched_via": "firecrawl",
+  "fetched_at": "2026-08-12T07:22:51+00:00",
+  "snapshot_date": "2026-08-12",
+  "content_sha256": "6a71cb60fe36dd9649ed51388ea8033f4531ad72a164a6a3d98aebc41656f24b",
+  "extracted_chars": 18140,
+  "price_signals": [
+    "Free",
+    "$0",
+    "per seat",
+    "per year",
+    "$49",
+    "per month",
+    "$79",
+    "$119",
+    "per User",
+    "custom pricing"
+  ],
+  "screenshot": "pricing.png",
+  "extractor_version": 2
+}

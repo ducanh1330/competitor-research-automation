@@ -1,0 +1,19 @@
+{
+  "competitor": "instantly",
+  "page_type": "home",
+  "requested_url": "https://instantly.ai",
+  "final_url": "https://instantly.ai",
+  "redirected": false,
+  "http_status": 200,
+  "title": "Sales Engagement and Lead Intelligence | Instantly",
+  "fetched_via": "firecrawl",
+  "fetched_at": "2026-08-12T07:23:27+00:00",
+  "snapshot_date": "2026-08-12",
+  "content_sha256": "9b717ff7a6474f6611c90d07f96f58e2cefa7aea2b9f530237911b1e965e08c1",
+  "extracted_chars": 4306,
+  "price_signals": [
+    "Free"
+  ],
+  "screenshot": "home.png",
+  "extractor_version": 2
+}

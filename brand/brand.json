@@ -1,0 +1,263 @@
+{
+  "_comment": "Single source of truth for DOZ.AI brand application. Generated from brand/guidelines/brand-guidelines.png (Brand Identity Guide v1.0) plus measurements from tools/derive_logo_variants.py. Do not hand-edit once the renderer depends on it — change the guide or re-run the tool instead. Anything the renderer needs that is absent here is a bug in this file, not a licence to invent a value.",
+
+  "brand": {
+    "name": "DOZ.AI",
+    "guide_version": "1.0",
+    "guide_source": "brand/guidelines/brand-guidelines.png",
+    "extracted_on": "2026-08-12",
+    "direction": "Intelligent. Minimal. Symmetrical.",
+    "tone": "Modern, minimal, technical, premium. Geometric, soft-edged, symmetrical mark suggesting motion, connectivity and AI systems; bold sans wordmark for a stable, serious tone."
+  },
+
+  "rules": {
+    "strict_monochrome": true,
+    "verbatim": "Keep all applications strictly monochrome. No vibrant accents.",
+    "enforcement": "Every colour emitted by the renderer must resolve to a value in color.palette or color.chart.series. Any other hex is a validation failure."
+  },
+
+  "color": {
+    "_comment": "The guide prints 8 swatches but only 5 unique hex values — the second row repeats three of the first row's colours under different names. Both vocabularies are recorded so either resolves.",
+    "palette": {
+      "primary_solid": {
+        "hex": "#000000",
+        "guide_name": "Primary Solid",
+        "role": "CORE DARK",
+        "aliases": []
+      },
+      "absolute_light": {
+        "hex": "#FFFFFF",
+        "guide_name": "Absolute Light",
+        "role": "CORE CANVAS",
+        "aliases": []
+      },
+      "charcoal": {
+        "hex": "#111111",
+        "guide_name": "Charcoal",
+        "role": "SUPPORTING TEXT",
+        "aliases": ["deep_gray"],
+        "alias_note": "Listed a second time in the guide as 'Deep Gray / SECONDARY DARK'."
+      },
+      "slate_gray": {
+        "hex": "#5B5B5B",
+        "guide_name": "Slate Gray",
+        "role": "MUTED ANNOTATIONS",
+        "aliases": ["mid_gray"],
+        "alias_note": "Listed a second time in the guide as 'Mid Gray / SECONDARY MID'."
+      },
+      "light_gray": {
+        "hex": "#EDEDED",
+        "guide_name": "Light Gray",
+        "role": "CONTAINER BACKGROUNDS",
+        "aliases": ["secondary_light"],
+        "alias_note": "Listed twice in the guide, both times as Light Gray #EDEDED."
+      }
+    },
+
+    "tokens": {
+      "_comment": "Semantic names the template and CSS use. Every value is a reference into color.palette — never a raw hex.",
+      "page_background": "absolute_light",
+      "text_primary": "primary_solid",
+      "text_body": "charcoal",
+      "text_muted": "slate_gray",
+      "surface_container": "light_gray",
+      "surface_inverse": "primary_solid",
+      "text_on_inverse": "absolute_light",
+      "rule_hairline": "light_gray",
+      "rule_strong": "primary_solid"
+    },
+
+    "usage_notes": {
+      "text_muted": "slate_gray (#5B5B5B) is specified for MUTED ANNOTATIONS only. It clears WCAG AA on both white (6.8:1) and #EDEDED (5.8:1), but body copy stays charcoal (#111111) for comfort at 15px.",
+      "surface_container": "#EDEDED panels also satisfy the guide's requirement for a solid panel behind any logo that would otherwise sit on a busy background."
+    },
+
+    "contrast_verified": [
+      { "fg": "#000000", "bg": "#FFFFFF", "ratio": 21.0, "wcag": "AAA" },
+      { "fg": "#111111", "bg": "#FFFFFF", "ratio": 18.9, "wcag": "AAA" },
+      { "fg": "#5B5B5B", "bg": "#FFFFFF", "ratio": 6.8, "wcag": "AA" },
+      { "fg": "#5B5B5B", "bg": "#EDEDED", "ratio": 5.8, "wcag": "AA" },
+      { "fg": "#111111", "bg": "#EDEDED", "ratio": 16.1, "wcag": "AAA" },
+      { "fg": "#FFFFFF", "bg": "#000000", "ratio": 21.0, "wcag": "AAA" },
+      { "fg": "#EDEDED", "bg": "#000000", "ratio": 17.9, "wcag": "AAA" }
+    ],
+
+    "chart": {
+      "_comment": "EXTENSION, NOT FROM THE GUIDE. The palette offers four values usable on white, which cannot separate 5-7 competitor series. Rather than introduce an accent hue (forbidden by strict_monochrome), this ramp interpolates between existing brand greys. #000000, #5B5B5B and #EDEDED are brand values; #2E2E2E, #8A8A8A and #B8B8B8 are derived. Pending user approval.",
+      "status": "approved-extension",
+      "approved_by_user": true,
+      "approved_on": "2026-08-12",
+      "approval_note": "User approved the derived grey ramp on 2026-08-12. It remains an extension to the printed guide, not part of it — if the guide is ever reissued with an official chart palette, that supersedes this.",
+      "series": ["#000000", "#5B5B5B", "#8A8A8A", "#2E2E2E", "#B8B8B8", "#EDEDED"],
+      "series_provenance": {
+        "#000000": "brand",
+        "#5B5B5B": "brand",
+        "#8A8A8A": "derived",
+        "#2E2E2E": "derived",
+        "#B8B8B8": "derived",
+        "#EDEDED": "brand"
+      },
+      "series_order_note": "Ordered for maximum adjacent-pair contrast, not by lightness, so neighbouring series stay distinguishable.",
+      "encoding_rules": [
+        "Direct-label every series at its endpoint. Do not rely on a colour legend — under monochrome a legend forces the reader to match near-identical greys.",
+        "Order categorical bars by value, descending, so position carries meaning alongside fill.",
+        "Distinguish line series by dash pattern first and grey second.",
+        "Highlight DOZ.AI's own series in #000000; competitors take the remaining ramp steps.",
+        "Grid lines and axes use #EDEDED; axis labels use #5B5B5B."
+      ],
+      "highlight": "#000000",
+      "grid": "#EDEDED",
+      "axis_label": "#5B5B5B",
+
+      "accent": {
+        "_comment": "EXPLICIT EXCEPTION to rules.strict_monochrome, authorised by the user on 2026-08-12 for infographics only. The printed guide says 'Keep all applications strictly monochrome. No vibrant accents.' This overrides that for charts and nothing else — the accent must never appear in body copy, headings, rules, panels, logos or any non-chart surface.",
+        "approved_by_user": true,
+        "approved_on": "2026-08-12",
+        "scope": "charts and infographics only",
+        "purpose": "Mark DOZ.AI's own series so the reader finds it instantly. One accent, one job — everything else in a chart stays on the grey ramp.",
+        "light": "#E8590C",
+        "dark": "#FF8A3D",
+        "light_note": "Deeper orange holds its own against a #FFFFFF ground; clears the 3:1 non-text contrast requirement for graphical objects.",
+        "dark_note": "Lifted orange for #000000 grounds — the light value reads muddy on black.",
+        "restrictions": [
+          "Never use for text smaller than 18px — these values are tuned for graphical objects (3:1), not body text (4.5:1).",
+          "Never use for more than one series in a chart. If two things need emphasis, the chart is doing too much.",
+          "Competitor series always stay on the grey ramp. The accent means 'this is us'."
+        ]
+      }
+    }
+  },
+
+  "typography": {
+    "families": {
+      "sans": {
+        "name": "Geist",
+        "css_stack": "'Geist', 'Inter', 'Satoshi', 'Segoe UI', system-ui, sans-serif",
+        "file": "brand/fonts/Geist-Variable.ttf",
+        "variable_axis": { "tag": "wght", "min": 100, "max": 900 },
+        "version": "1.800",
+        "license": "SIL Open Font License 1.1",
+        "fs_type": 0,
+        "embeddable": true,
+        "embed_note": "fsType 0 (Installable Embedding) verified with fontTools — legal to embed in the PDF.",
+        "fallback_note": "The guide's Type Recommendations column suggests 'Inter, Satoshi, or similar', but every specimen in the scale system is labelled Geist. Geist is treated as authoritative; Inter and Satoshi are recorded as documented fallbacks."
+      },
+      "mono": {
+        "name": "Geist Mono",
+        "css_stack": "'Geist Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace",
+        "file": "brand/fonts/GeistMono-Variable.ttf",
+        "variable_axis": { "tag": "wght", "min": 100, "max": 900 },
+        "version": "1.701",
+        "license": "SIL Open Font License 1.1",
+        "fs_type": 0,
+        "embeddable": true
+      }
+    },
+
+    "scale": {
+      "h1":     { "label": "Display Large",  "family": "sans", "size_px": 36, "weight": 700, "line_height": 1.15, "letter_spacing": "-0.02em" },
+      "h2":     { "label": "Heading Medium", "family": "sans", "size_px": 24, "weight": 600, "line_height": 1.25, "letter_spacing": "-0.01em" },
+      "h3":     { "label": "Subhead",        "family": "sans", "size_px": 18, "weight": 600, "line_height": 1.3,  "letter_spacing": "0",
+                  "provenance": "proposed — the guide defines no H3; interpolated between H2 (24px) and body (15px)" },
+      "body":   { "label": "Body",           "family": "sans", "size_px": 15, "weight": 400, "line_height": 1.6,  "letter_spacing": "0" },
+      "small":  { "label": "Small",          "family": "sans", "size_px": 13, "weight": 400, "line_height": 1.5,  "letter_spacing": "0",
+                  "provenance": "proposed — the guide defines no caption size; set one step below body" },
+      "mono":   { "label": "Technical",      "family": "mono", "size_px": 12, "weight": 400, "line_height": 1.45, "letter_spacing": "0",
+                  "provenance": "proposed size — the guide specifies the face and its usage but no size" },
+      "eyebrow":{ "label": "Section eyebrow","family": "mono", "size_px": 11, "weight": 500, "line_height": 1.2,  "letter_spacing": "0.12em", "transform": "uppercase",
+                  "provenance": "derived from the guide's own section headers ('01 / BRAND DIRECTION'), which are uppercase letterspaced mono" }
+    },
+
+    "mono_usage": {
+      "verbatim": "Reserved exclusively for metadata, labels, variables, and technical/code parameters.",
+      "applies_to_in_report": ["source URLs", "snapshot dates", "data values and axis labels", "section eyebrows", "page numbers", "competitor slugs"],
+      "never": "Body copy, headings, or any running prose."
+    },
+
+    "proposed_additions_note": "h3, small, mono size and eyebrow are not in the guide. They are recorded with an explicit 'provenance' field so a future reader can tell extracted values from inferred ones."
+  },
+
+  "logo": {
+    "_comment": "Geometry measured by tools/derive_logo_variants.py; see brand/brand_metrics.json for the raw measurement.",
+    "source_supplied": "brand/logo/dozai-lockup.png",
+    "variants": {
+      "lockup": {
+        "file": "brand/logo/dozai-lockup-trimmed.png",
+        "size_px": [976, 902],
+        "description": "Primary lockup — symbol above wordmark, transparent background.",
+        "use": "Cover page and back page. Preferred on white.",
+        "on_backgrounds": ["#FFFFFF", "#EDEDED"]
+      },
+      "lockup_reversed": {
+        "file": "brand/logo/dozai-lockup-reversed.png",
+        "size_px": [976, 902],
+        "description": "White lockup for dark panels.",
+        "use": "Only on #000000 or #111111 panels.",
+        "on_backgrounds": ["#000000", "#111111"]
+      },
+      "symbol": {
+        "file": "brand/logo/dozai-symbol.png",
+        "size_px": [551, 562],
+        "description": "Secondary mark — symbol only, transparent background.",
+        "use": "Running header on interior pages, and anywhere space is limited.",
+        "on_backgrounds": ["#FFFFFF", "#EDEDED"]
+      },
+      "symbol_reversed": {
+        "file": "brand/logo/dozai-symbol-reversed.png",
+        "size_px": [551, 562],
+        "description": "White symbol for dark panels.",
+        "use": "Dark section dividers.",
+        "on_backgrounds": ["#000000", "#111111"]
+      }
+    },
+
+    "clear_space": {
+      "ratio_of_lockup_height": 0.0532,
+      "basis": "Height of the dot in the .AI wordmark, per the guide's Clear Space Rules.",
+      "measured_dot_px": 48,
+      "measured_lockup_height_px": 902,
+      "application": "Multiply the rendered logo height by this ratio to get the minimum padding on all four sides."
+    },
+
+    "minimum_size": {
+      "status": "proposed",
+      "provenance": "The guide states clear-space rules but no minimum size. These are proposed floors below which the wordmark stops being legible in print.",
+      "lockup_min_width_px": 120,
+      "symbol_min_width_px": 24
+    },
+
+    "prohibitions": [
+      "Do not stretch or compress the system assets",
+      "Do not add shadows, gradients, outlines, or textures",
+      "Do not rotate the symbol or alter its geometry",
+      "Do not change the wordmark typography family",
+      "Do not place on busy backgrounds without a solid panel",
+      "Do not recolor the core marks outside approved monochrome"
+    ],
+
+    "renderer_obligations": [
+      "Always set width or height alone, never both, so aspect ratio is preserved (prohibition 1).",
+      "Never apply CSS filter, box-shadow, or border to a logo element (prohibition 2).",
+      "Never apply transform: rotate to a logo element (prohibition 3).",
+      "Place a solid #FFFFFF or #EDEDED panel behind any logo adjacent to a screenshot or chart (prohibition 5).",
+      "Use the supplied reversed asset on dark grounds rather than a CSS invert filter (prohibitions 2 and 6)."
+    ]
+  },
+
+  "page": {
+    "_comment": "Print geometry for the PDF. Not specified in the guide — chosen to suit an A4 report and recorded here so the renderer has a single place to read them from.",
+    "status": "proposed",
+    "size": "A4",
+    "margin_mm": { "top": 18, "right": 16, "bottom": 18, "left": 16 },
+    "header": {
+      "show_from_page": 2,
+      "content": "symbol + report title",
+      "rule_below": true
+    },
+    "footer": {
+      "show_from_page": 2,
+      "content": "page number + report month",
+      "font": "mono"
+    }
+  }
+}

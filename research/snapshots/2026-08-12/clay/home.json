@@ -1,0 +1,21 @@
+{
+  "competitor": "clay",
+  "page_type": "home",
+  "requested_url": "https://www.clay.com",
+  "final_url": "https://www.clay.com",
+  "redirected": false,
+  "http_status": 200,
+  "title": "Clay | Build systems to grow revenue",
+  "fetched_via": "firecrawl",
+  "fetched_at": "2026-08-12T07:24:16+00:00",
+  "snapshot_date": "2026-08-12",
+  "content_sha256": "dd57ce59017e8cfa8783f1a2716e631021f3704321bb67235d41bd182683d538",
+  "extracted_chars": 17285,
+  "price_signals": [
+    "$5",
+    "free",
+    "$10"
+  ],
+  "screenshot": "home.png",
+  "extractor_version": 2
+}

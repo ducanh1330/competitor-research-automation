@@ -1,0 +1,425 @@
+{
+  "_comment": "Baseline run, REVISED 2026-08-12 after the profile was corrected: ICP is marketing agencies (not SMB/startup generally), pricing is credit-based usage (not per seat), and the stated differentiator is 'all-in-one platform'. The first draft's lead finding was built on the per-seat assumption and has been withdrawn — it no longer applies. Every price here comes from a first-party snapshot taken 2026-08-12.",
+  "meta": {
+    "report_month": "2026-08",
+    "competitor_count": 7,
+    "pages_tracked": 14,
+    "run_type": "baseline",
+    "title": "The agency gap",
+    "subtitle": "Baseline competitive analysis across seven players in AI lead generation and outbound, judged on what marketing agencies actually buy."
+  },
+
+  "executive_summary": [
+    {
+      "finding": "Smartlead has productised the agency model: full white-label at $29/month per client workspace, with tiers it explicitly describes as \"built for agencies\".",
+      "so_what": "For an agency ICP this is the competitor to beat, not Apollo. White-label and per-client workspaces are the features an agency is actually shopping for, and Smartlead already ships both with published pricing.",
+      "sources": [{ "url": "https://www.smartlead.ai/pricing", "snapshot_date": "2026-08-12" }]
+    },
+    {
+      "finding": "\"All-in-one\" — our stated differentiator — appears verbatim on both Apollo.io's and Lemlist's own pages.",
+      "so_what": "It cannot differentiate us; two larger players already say it. Worse, it invites the comparison we lose: database size and feature count. The differentiator needs to be agency-specific, not scope-specific.",
+      "sources": [
+        { "url": "https://www.apollo.io/pricing", "snapshot_date": "2026-08-12" },
+        { "url": "https://www.lemlist.com/pricing", "snapshot_date": "2026-08-12" }
+      ]
+    },
+    {
+      "finding": "Apollo and Clay — the two most credible players in the set — show no agency signals at all across every page captured. No white-label, no client workspaces, no agency language.",
+      "so_what": "The strongest brands in this category are built for in-house teams. That is the real whitespace: the agency segment is contested by Smartlead and Instantly, not by the market leaders.",
+      "sources": [
+        { "url": "https://www.apollo.io/pricing", "snapshot_date": "2026-08-12" },
+        { "url": "https://www.clay.com/pricing", "snapshot_date": "2026-08-12" }
+      ]
+    },
+    {
+      "finding": "Credit-based usage pricing puts us with the direction of the market, not against it. Clay meters Data Credits plus Actions, Apollo grants credits per seat, Instantly meters credits.",
+      "so_what": "Our pricing axis is not a liability. The live risk is legibility, not alignment — Clay's dual-currency model is widely considered hard to forecast, and a single, predictable credit unit is a genuine advantage we could claim.",
+      "sources": [
+        { "url": "https://www.clay.com/pricing", "snapshot_date": "2026-08-12" },
+        { "url": "https://www.apollo.io/pricing", "snapshot_date": "2026-08-12" },
+        { "url": "https://instantly.ai/pricing", "snapshot_date": "2026-08-12" }
+      ]
+    },
+    {
+      "finding": "At $249-499/month we sit 5-10x above the tooling tier ($39-119) and well below managed AI SDR services ($900+). Four competitors reach our band only once an agency runs real volume.",
+      "so_what": "Entry-price comparisons are the wrong fight and we lose them by design — an agency comparing us to Smartlead's $39 sees a 6x gap. The comparison to force is cost at agency scale, where Smartlead, Apollo, Lemlist and Instantly all arrive in our band by charging per seat or per client, and we do not.",
+      "sources": [
+        { "url": "https://www.smartlead.ai/pricing", "snapshot_date": "2026-08-12" },
+        { "url": "https://www.apollo.io/pricing", "snapshot_date": "2026-08-12" }
+      ]
+    },
+    {
+      "finding": "We are missing two things every serious competitor has: a free tier and an annual discount. Apollo, Clay and Smartlead all offer a free tier; annual discounts run 17-29% across the set.",
+      "so_what": "Both are table stakes rather than differentiators, which makes their absence pure cost. At a $249 entry against competitors starting at $39, a prospect has no low-risk way to try us — and our monthly price is being compared against their discounted annual one.",
+      "sources": [
+        { "url": "https://www.apollo.io/pricing", "snapshot_date": "2026-08-12" },
+        { "url": "https://www.smartlead.ai/pricing", "snapshot_date": "2026-08-12" }
+      ]
+    },
+    {
+      "finding": "Smartlead's agency pricing scales by client count: $29/month per white-labelled workspace on top of a $94-$379 base.",
+      "so_what": "An agency running 10 clients pays roughly $464-$669/month. Every new client they win costs them more. A credit model that charges for usage but not for workspaces attacks that directly — growth stops being penalised.",
+      "sources": [{ "url": "https://www.smartlead.ai/pricing", "snapshot_date": "2026-08-12" }]
+    }
+  ],
+
+  "market_map": {
+    "tiers": {
+      "Direct — agency-native": ["Smartlead", "Instantly"],
+      "Direct — but built for in-house teams": ["Apollo.io", "Clay", "Lemlist"],
+      "Adjacent": ["AiSDR"],
+      "Aspirational": ["11x"]
+    },
+    "our_position": "Judged on agency fit rather than feature overlap, the set splits in two. Smartlead and Instantly actively court agencies — Smartlead with white-label and client workspaces, Instantly with an Agencies segment and 'find clients' positioning. Apollo, Clay and Lemlist are larger but built for a single in-house team. DOZ.AI competes hard against the first group and can largely ignore the second on this ICP."
+  },
+
+  "pricing": {
+    "intro": "All figures are USD, read from each competitor's own pricing page on 2026-08-12. For an agency buyer, headline entry price is the wrong comparison — what matters is total cost at N client accounts, which is what the first chart models.",
+    "chart_caption": "Published entry price per month, directly comparable tooling players. Entry price understates the agency cost for Smartlead, which bills per client workspace on top — see observation 01. AiSDR ($900) is excluded to keep the $39-69 band readable.",
+    "rows": [
+      { "name": "DOZ.AI", "model": "Credit usage", "entry": "$249", "mid": "$399", "entry_value": 249, "is_us": true, "placeholder": true, "notes": "Starter $249/25k credits, Growth $399/60k, Scale $499/100k. Unlimited client workspaces and seats on every tier. One credit = one enriched contact or one AI message." },
+      { "name": "Smartlead", "model": "Tier + per client", "entry": "$39", "mid": "$174", "entry_value": 39, "notes": "Base $39, Pro $94, Unlimited Smart $174, Unlimited Prime $379. White-label +$29/mo per client workspace; Prime includes 3. Annual saves 17%." },
+      { "name": "Instantly", "model": "Flat + credits", "entry": "$47", "mid": "$97", "entry_value": 47, "notes": "Growth: unlimited email accounts, 5,000 emails/mo, 1,000 contacts, 1,500 credits. Markets an Agencies segment." },
+      { "name": "Apollo.io", "model": "Seat + credits", "entry": "$49", "mid": "$79", "entry_value": 49, "notes": "Per seat/mo billed annually; 30,000 credits per seat per year. No agency features found." },
+      { "name": "Lemlist", "model": "Flat, unlimited users", "entry": "$69", "mid": "$109", "entry_value": 69, "notes": "Email plan $69/mo unlimited users; Multichannel $109 per user. Mentions agencies only in passing." },
+      { "name": "Clay", "model": "Credits + Actions", "entry": "$54", "mid": "$167", "entry_value": 54, "notes": "Now captured (Firecrawl). Free tier, then from $54/mo (180K credits/yr) or $60/mo (15K actions/mo). Bundles at $167 and $446/mo. Scales to $486-540/mo standard, $1,913/mo enterprise. Two separate currencies to forecast." },
+      { "name": "AiSDR", "model": "Managed / outcome", "entry": "$900", "mid": "$1,800", "notes": "Works with agencies as a delivery partner rather than a tool. Omitted from the chart — see caption." },
+      { "name": "11x", "model": "Contact sales", "entry": "not published", "mid": "not published", "notes": "No public pricing" }
+    ],
+    "cost_model": {
+      "title": "Chart 2 — Monthly cost as client count grows",
+      "question": "At what point do we become the cheaper option?",
+      "as_at": "12 August 2026",
+      "caption": "Only vendors whose per-client cost can be derived directly from their published pricing are plotted. Apollo, Instantly and Clay are excluded because modelling their per-client cost would require assumptions their pricing pages do not support.",
+      "x_label": "Number of client accounts",
+      "y_label": "Total monthly cost, USD",
+      "clients": [1, 5, 10, 15, 20],
+      "series": [
+        {
+          "name": "Smartlead",
+          "base": 94,
+          "per_client": 29,
+          "note": "Pro plan $94 (lowest tier supporting client workspaces) + $29/mo per white-labelled workspace",
+          "source": "https://www.smartlead.ai/pricing"
+        },
+        {
+          "name": "Lemlist",
+          "base": 69,
+          "per_client": 0,
+          "note": "Flat $69/mo unlimited users — but no per-client workspaces or white-label, so this is cost without the capability",
+          "source": "https://www.lemlist.com/pricing",
+          "caveat": true
+        },
+        {
+          "name": "DOZ.AI",
+          "base": 399,
+          "per_client": 0,
+          "note": "Growth tier $399 — unlimited client workspaces on every tier, never metered",
+          "is_us": true,
+          "placeholder": true
+        }
+      ],
+      "insight": "Smartlead passes our Growth tier at about 11 client accounts. Below that they are genuinely cheaper and we should not fight for those agencies; above it the gap widens by $29 for every client they win. Our Starter tier at $249 crosses at about 5 clients, so the honest pitch is: agencies running 5+ clients, and the case strengthens the more they grow."
+    },
+
+    "price_positioning": {
+      "title": "Chart 1 — Monthly price by tier",
+      "question": "Where do we sit against direct competitors?",
+      "as_at": "12 August 2026",
+      "caption": "Direct competitors only. Each bar is the typical monthly price an agency pays on that vendor's mid tier. Vendors are grouped into three price bands so like is compared with like.",
+      "x_axis_label": "Monthly price, USD",
+      "bands": [
+        { "name": "Entry", "range": "$39 – $119", "note": "Single-team tools. Cannot run multiple client accounts." },
+        { "name": "Mid", "range": "$167 – $499", "note": "Where agency-capable plans actually start. Our band." },
+        { "name": "Premium", "range": "$900+", "note": "Managed services, not tools. Different budget line." }
+      ],
+      "entries": [
+        { "name": "Smartlead", "band": "Entry", "value": 39, "label": "$39", "detail": "Base plan" },
+        { "name": "Instantly", "band": "Entry", "value": 47, "label": "$47", "detail": "Growth plan" },
+        { "name": "Apollo.io", "band": "Entry", "value": 49, "label": "$49", "detail": "Basic, per seat" },
+        { "name": "Clay", "band": "Entry", "value": 54, "label": "$54", "detail": "Starter credits" },
+        { "name": "Lemlist", "band": "Entry", "value": 69, "label": "$69", "detail": "Email plan" },
+        { "name": "Clay", "band": "Mid", "value": 167, "label": "$167", "detail": "Standard bundle" },
+        { "name": "Smartlead", "band": "Mid", "value": 174, "label": "$174", "detail": "Unlimited Smart" },
+        { "name": "DOZ.AI", "band": "Mid", "value": 399, "label": "$399", "detail": "Growth tier", "is_us": true },
+        { "name": "Clay", "band": "Mid", "value": 446, "label": "$446", "detail": "Larger bundle" },
+        { "name": "AiSDR", "band": "Premium", "value": 900, "label": "$900", "detail": "Entry managed tier" }
+      ],
+      "insight": "The mid band is where agency-capable plans actually begin, and it is thinly populated: only Clay and Smartlead reach it, and neither offers what we do. At $399 we are the most expensive tool in that band, so the price has to be justified by the per-client economics in Chart 2."
+    },
+
+    "observations": [
+      {
+        "finding": "Smartlead's true agency cost is base plus $29 per client. Ten clients on Unlimited Smart is roughly $464/month; on Unlimited Prime, roughly $669/month with 3 workspaces included.",
+        "so_what": "This is the number to price against, not their $39 headline. It also means their cost rises with every client an agency wins — a structural weakness we can attack by not charging per workspace at all.",
+        "sources": [{ "url": "https://www.smartlead.ai/pricing", "snapshot_date": "2026-08-12" }]
+      },
+      {
+        "finding": "Smartlead gates client workspaces behind the Pro plan and above; the $39 Base plan cannot run multiple clients.",
+        "so_what": "Their real agency entry point is $94, not $39. Any agency comparing us to \"the $39 tool\" is comparing against a plan that cannot do the job.",
+        "sources": [{ "url": "https://www.smartlead.ai/pricing", "snapshot_date": "2026-08-12" }]
+      },
+      {
+        "finding": "All Smartlead plans include unlimited email accounts, and Instantly bundles unlimited mailboxes and warmup at $47.",
+        "so_what": "Sending infrastructure has been commoditised to zero marginal price across the agency-facing players. Metering mailboxes would read as extractive to this buyer.",
+        "sources": [
+          { "url": "https://www.smartlead.ai/pricing", "snapshot_date": "2026-08-12" },
+          { "url": "https://instantly.ai/pricing", "snapshot_date": "2026-08-12" }
+        ]
+      },
+      {
+        "finding": "Annual discounting is universal: Apollo 29%, Lemlist about 20%, Smartlead 17%.",
+        "so_what": "Not a differentiator, but its absence is a penalty. Without one, our monthly price is compared against their discounted annual price.",
+        "sources": [
+          { "url": "https://www.apollo.io/pricing", "snapshot_date": "2026-08-12" },
+          { "url": "https://www.smartlead.ai/pricing", "snapshot_date": "2026-08-12" }
+        ]
+      }
+    ]
+  },
+
+  "messaging": {
+    "intro": "Headline claims as captured. The relevant question is which of these speak to an agency rather than an in-house team.",
+    "rows": [
+      { "name": "DOZ.AI", "headline": "All-in-one platform — scrape, build lists, personalised outreach", "audience": "Marketing agencies", "is_us": true },
+      { "name": "Smartlead", "headline": "Manage responses from all campaigns and clients in one shared inbox", "audience": "Lead generation agencies through to Fortune 500" },
+      { "name": "Instantly", "headline": "Find clients Instantly — get more clients by chatting to AI", "audience": "Agencies and small teams" },
+      { "name": "Apollo.io", "headline": "The all-in-one platform to grow your business", "audience": "Businesses of all sizes" },
+      { "name": "Lemlist", "headline": "The all-in-one platform for precise outbound, at any scale", "audience": "Solo founder, agency, or scaling team" }
+    ],
+    "crowded": [
+      "\"All-in-one platform\" — used verbatim by Apollo AND Lemlist. This is currently our stated differentiator and it is the most contested phrase in the category.",
+      "\"AI agents\" — Apollo, Instantly and Lemlist all ship named AI agents. Table stakes, not a claim.",
+      "\"For everyone / at any scale\" — Apollo and Lemlist both. Says nothing about who the product is for, which is precisely the gap an agency-specific product should exploit."
+    ],
+    "whitespace": [
+      "Agency economics as the headline. Smartlead has agency features but still leads with inbox management; nobody leads with what an agency actually optimises — margin per client.",
+      "Cost that does not rise per client. Smartlead charges $29 per workspace; framing 'add clients for free, pay only for usage' is unclaimed and directly attacks the leader.",
+      "A named, published cost-per-qualified-lead. Every player prices inputs; agencies resell outcomes to their own clients and have to do this maths themselves."
+    ]
+  },
+
+  "features": {
+    "intro": "Cut to the six capabilities that decide an agency purchase. General feature count is deliberately excluded — an agency does not choose on database size, it chooses on whether the tool can run many clients profitably. Rows where we lose matter as much as rows where we win.",
+    "table_title": "Table 1 — Agency-critical capabilities",
+    "as_at": "12 August 2026",
+    "legend": "Yes = ships it · Partial = limited or gated behind a higher tier · blank = not offered",
+    "columns": ["DOZ.AI", "Smartlead", "Instantly", "Apollo", "Clay", "Lemlist"],
+    "matrix": [
+      { "capability": "White-label for client-facing work", "cells": ["partial", "yes", "no", "no", "no", "no"] },
+      { "capability": "Separate workspace per client", "cells": ["yes", "yes", "partial", "no", "no", "partial"] },
+      { "capability": "Adding a client costs nothing extra", "cells": ["yes", "no", "no", "no", "no", "no"] },
+      { "capability": "One inbox across all clients", "cells": ["yes", "yes", "no", "no", "no", "no"] },
+      { "capability": "Free tier to trial before committing", "cells": ["no", "yes", "partial", "yes", "yes", "no"] },
+      { "capability": "Annual discount", "cells": ["no", "yes", "partial", "yes", "partial", "yes"] }
+    ],
+    "gaps_ours": [
+      "Full white-label. Smartlead ships it at $29/mo per workspace and it is the single clearest agency requirement we can verify.",
+      "Per-client workspaces with separate reporting — the operational unit an agency actually works in.",
+      "A unified inbox spanning all clients, which Smartlead leads its own copy with.",
+      "A free tier. Apollo, Clay and Smartlead all have one; agencies trial extensively before committing a client."
+    ],
+    "gaps_theirs": [
+      "Nobody prices so that adding a client is free. Smartlead explicitly charges per workspace.",
+      "Apollo and Clay have no agency features at all, despite being the most credible brands in the set.",
+      "Nobody publishes cost-per-client or cost-per-qualified-lead maths, which is the number an agency resells on."
+    ]
+  },
+
+  "competitors": [
+    {
+      "name": "Smartlead",
+      "url": "https://www.smartlead.ai/pricing",
+      "tier": "Direct — agency-native",
+      "one_liner": "The agency competitor to beat. White-label, per-client workspaces and a unified multi-client inbox, with published pricing for all three.",
+      "they_win": [
+        "Full white-label at $29/mo per client workspace — we can verify no one else in the set offers this",
+        "Unified inbox across all campaigns and clients, led as their headline benefit",
+        "Unlimited email accounts on every plan, including the $39 Base",
+        "Explicit agency credibility — \"trusted by 100,000+ businesses, from best agencies to Fortune 500\""
+      ],
+      "we_win": [
+        "Their cost rises with every client won: $29 per workspace is a tax on agency growth",
+        "Real agency entry is $94 (Pro), not the $39 headline — workspaces are gated above Base",
+        "Tier-based, not usage-based, so an agency with uneven client volume overpays on quiet months"
+      ],
+      "sources": [{ "url": "https://www.smartlead.ai/pricing", "snapshot_date": "2026-08-12" }]
+    },
+    {
+      "name": "Instantly",
+      "url": "https://instantly.ai/pricing",
+      "tier": "Direct — agency-native",
+      "one_liner": "Courts agencies through positioning rather than features — an Agencies segment and \"find clients\" messaging, but no verifiable white-label.",
+      "they_win": [
+        "Unlimited mailboxes and warmup bundled at $47",
+        "450M+ lead database included",
+        "Credit-based metering, the same axis we price on",
+        "Agency-targeted marketing and an agency plan tier"
+      ],
+      "we_win": [
+        "No white-label found in captured pages, unlike Smartlead",
+        "Meters four separate resources while claiming simple pricing",
+        "Entry plan caps uploaded contacts at 1,000 — low for agency list building"
+      ],
+      "sources": [{ "url": "https://instantly.ai/pricing", "snapshot_date": "2026-08-12" }]
+    },
+    {
+      "name": "Apollo.io",
+      "url": "https://www.apollo.io/pricing",
+      "tier": "Direct — built for in-house teams",
+      "one_liner": "The biggest brand in the category, and not an agency product. Zero agency signals across every page captured.",
+      "they_win": [
+        "Free tier with real capability — 900 credits/seat/year",
+        "Largest bundled database and waterfall enrichment",
+        "29% annual discount"
+      ],
+      "we_win": [
+        "No white-label, no client workspaces, no agency language anywhere in captured pages",
+        "Per-seat pricing fits an in-house team, not an agency running many client accounts",
+        "Organization tier enforces a 3-seat minimum"
+      ],
+      "sources": [{ "url": "https://www.apollo.io/pricing", "snapshot_date": "2026-08-12" }]
+    },
+    {
+      "name": "Clay",
+      "url": "https://www.clay.com/pricing",
+      "tier": "Direct — built for in-house teams",
+      "one_liner": "Our closest pricing-model peer and a real price competitor: bundles at $167 and $446/mo sit inside our band, with a free tier below it.",
+      "they_win": [
+        "Free tier, then $54/mo entry — an agency can start for nothing and grow into our price band rather than starting at it",
+        "Credit model scales with value rather than headcount, the same logic we use",
+        "Bring-your-own-API-keys skips Data Credit cost entirely",
+        "Strong enterprise proof: SOC 2 Type II, named case studies with quantified lift"
+      ],
+      "we_win": [
+        "Two currencies to forecast — Data Credits AND Actions, each with its own tier ladder. Our single unit covers both scrape and send.",
+        "No agency features at all: no white-label, no client workspaces, no multi-client inbox",
+        "Requires real setup effort; not a fit for an agency needing client results this week"
+      ],
+      "sources": [{ "url": "https://www.clay.com/pricing", "snapshot_date": "2026-08-12" }]
+    },
+    {
+      "name": "Lemlist",
+      "url": "https://www.lemlist.com/pricing",
+      "tier": "Direct — built for in-house teams",
+      "one_liner": "Mentions agencies in passing but is not built for them. Its unlimited-users plan is aimed at teams, not client separation.",
+      "they_win": [
+        "$69/mo entry with unlimited users",
+        "650M+ lead database bundled",
+        "Multichannel beyond email — LinkedIn, phone, WhatsApp, SMS"
+      ],
+      "we_win": [
+        "\"Solo founder, agency, or scaling team\" is a list, not a position — no agency-specific capability",
+        "Multichannel tier reverts to $109 per user, expensive at agency scale"
+      ],
+      "sources": [{ "url": "https://www.lemlist.com/pricing", "snapshot_date": "2026-08-12" }]
+    }
+  ],
+
+  "whats_working": [
+    {
+      "tactic": "Smartlead selling white-label as a per-workspace add-on rather than a plan tier",
+      "why_it_works": "Keeps the headline price low and competitive while monetising exactly the customers who can most afford it — agencies billing their own clients. The cost lands after commitment, not during comparison.",
+      "evidence": "Whitelabeling is offered at $29/month per client workspace, available from the Pro plan upward, with 3 workspaces included on Unlimited Prime.",
+      "sources": [{ "url": "https://www.smartlead.ai/pricing", "snapshot_date": "2026-08-12" }]
+    },
+    {
+      "tactic": "Leading agency messaging with the operational pain rather than the feature",
+      "why_it_works": "Smartlead's copy opens on managing responses across all campaigns and clients in one inbox — the daily friction of agency life — instead of naming a feature. It describes the buyer's Monday morning.",
+      "evidence": "\"View and manage responses from all campaigns and clients in one shared inbox—no more switching...\"",
+      "sources": [{ "url": "https://www.smartlead.ai/pricing", "snapshot_date": "2026-08-12" }]
+    },
+    {
+      "tactic": "Instantly reframing the product around getting the agency its own clients",
+      "why_it_works": "\"Find clients Instantly\" sells the agency's own growth, not campaign tooling. It targets the agency's business problem rather than its workflow.",
+      "evidence": "Homepage sections include \"Find Clients\", \"Get more clients by chatting to AI\", and a dedicated Agencies segment.",
+      "sources": [{ "url": "https://instantly.ai", "snapshot_date": "2026-08-12" }]
+    },
+    {
+      "tactic": "Clay leading its pricing page with quantified customer outcomes before any number",
+      "why_it_works": "Reframes the page from cost to return — +50% win-rate, 2x cold email performance, +140% outbound pipeline, all named companies.",
+      "evidence": "Pricing page opens with case-study results from Hex, Rippling, Intercom and Merge above the plan detail.",
+      "sources": [{ "url": "https://www.clay.com/pricing", "snapshot_date": "2026-08-12" }]
+    }
+  ],
+
+  "recommendations": [
+    {
+      "title": "Ship white-label and per-client workspaces",
+      "rationale": "Smartlead ships both and markets them hard to exactly our ICP. For an agency buyer these are qualification criteria, not differentiators — without them we are not on the shortlist regardless of how good the AI is.",
+      "impact": "high",
+      "effort": "high",
+      "traces_to": "Summary 1"
+    },
+    {
+      "title": "Make adding a client free; meter only usage",
+      "rationale": "Smartlead charges $29/month per client workspace, so their cost rises with every client an agency wins. Our credit model already supports charging for usage alone. 'Add clients for free, pay only for what you use' attacks the leader's structure, not just its price.",
+      "impact": "high",
+      "effort": "low",
+      "traces_to": "Pricing obs. 01"
+    },
+    {
+      "title": "Replace \"all-in-one\" with an agency-specific claim",
+      "rationale": "Apollo and Lemlist both use \"all-in-one\" verbatim, so it cannot differentiate us. Meanwhile Apollo and Clay — the two biggest brands in the set — show no agency signals at all. Agency economics as a headline claim is unclaimed ground, and it is the one worth taking.",
+      "impact": "high",
+      "effort": "low",
+      "traces_to": "Summary 2 & 3"
+    },
+    {
+      "title": "Sell against effective cost at agency scale, never entry price",
+      "rationale": "At $249-499 we lose every entry-price comparison by design. Smartlead passes our Growth tier at roughly 11 clients, and by 20 clients they cost about $674 against our $399. Publishing that crossover reframes the conversation onto ground we win, and it is arithmetic from their own published pricing.",
+      "impact": "high",
+      "effort": "low",
+      "traces_to": "Cost model"
+    },
+    {
+      "title": "Publish the ten-client cost comparison",
+      "rationale": "Smartlead's real cost at 10 clients is roughly $464-669/month once white-label is added, against a $39 headline. Making that maths explicit reframes the entire price conversation in our favour and is honest, sourced work.",
+      "impact": "high",
+      "effort": "low",
+      "traces_to": "Pricing obs. 01"
+    },
+    {
+      "title": "Claim a single, forecastable credit unit",
+      "rationale": "Clay's Data Credits plus Actions is the most-cited difficulty with credit pricing. One legible unit, with a published cost-per-lead, turns our pricing axis from a parity feature into an advantage.",
+      "impact": "medium",
+      "effort": "low",
+      "traces_to": "Summary 4"
+    },
+    {
+      "title": "Add a free tier and an annual discount",
+      "rationale": "Apollo, Clay and Smartlead all offer a free tier; annual discounts run 17-29% across the set. Agencies trial extensively before putting a client on a platform, and without an annual option our monthly price is compared to their discounted one.",
+      "impact": "medium",
+      "effort": "medium",
+      "traces_to": "Pricing obs. 04"
+    }
+  ],
+
+  "appendix": {
+    "sources": [
+      { "competitor": "Smartlead", "page_type": "pricing", "snapshot_date": "2026-08-12", "url": "https://www.smartlead.ai/pricing" },
+      { "competitor": "Smartlead", "page_type": "home", "snapshot_date": "2026-08-12", "url": "https://www.smartlead.ai" },
+      { "competitor": "Instantly", "page_type": "pricing", "snapshot_date": "2026-08-12", "url": "https://instantly.ai/pricing" },
+      { "competitor": "Instantly", "page_type": "home", "snapshot_date": "2026-08-12", "url": "https://instantly.ai" },
+      { "competitor": "Apollo.io", "page_type": "pricing", "snapshot_date": "2026-08-12", "url": "https://www.apollo.io/pricing" },
+      { "competitor": "Apollo.io", "page_type": "home", "snapshot_date": "2026-08-12", "url": "https://www.apollo.io" },
+      { "competitor": "Clay", "page_type": "pricing", "snapshot_date": "2026-08-12", "url": "https://www.clay.com/pricing" },
+      { "competitor": "Clay", "page_type": "home", "snapshot_date": "2026-08-12", "url": "https://www.clay.com" },
+      { "competitor": "Lemlist", "page_type": "pricing", "snapshot_date": "2026-08-12", "url": "https://www.lemlist.com/pricing" },
+      { "competitor": "Lemlist", "page_type": "home", "snapshot_date": "2026-08-12", "url": "https://www.lemlist.com" },
+      { "competitor": "AiSDR", "page_type": "pricing", "snapshot_date": "2026-08-12", "url": "https://aisdr.com/pricing" },
+      { "competitor": "AiSDR", "page_type": "home", "snapshot_date": "2026-08-12", "url": "https://aisdr.com" },
+      { "competitor": "11x", "page_type": "home", "snapshot_date": "2026-08-12", "url": "https://www.11x.ai" }
+    ],
+    "limitations": [
+      "DOZ.AI is a demonstration company. Its tiers, credit unit and feature set are FICTIONAL, invented to exercise the pipeline end to end. Every competitor figure is real and sourced; nothing about DOZ.AI is.",
+      "Absence of an agency feature means it was not found on the pages captured — not proof it does not exist. Apollo and Clay may serve agencies through sales channels that leave no trace on public pages.",
+      "Apollo's /product URL redirects to its homepage, so that page adds nothing. The tracked page list should be corrected before the next run.",
+      "No traffic, keyword-volume or ad-spend data. Public page content only, no paid data vendors — so 'what's working' is reasoned from observable positioning, not measured performance.",
+      "Pages were captured logged-out from a UTC timezone. Regionally varied or account-specific pricing would not be visible.",
+      "Baseline run, so there is no month-over-month change section. The next run will produce one.",
+      "This analysis was revised twice. The first draft's lead finding — that per-seat pricing left us exposed — was withdrawn once credit-based pricing was confirmed. A second revision converted everything to AUD on an Australian-market assumption; that too was withdrawn when the market was confirmed as the US. Both are noted because a reader should know which conclusions were reversed and why.",
+      "All pages were captured via Firecrawl. Earlier snapshots in this run used local Playwright, which extracted materially less on JS-heavy pages (Apollo's homepage: 225 characters versus 9,182). All snapshots were re-taken with Firecrawl so the baseline is internally consistent — a mixed baseline would make next month's diff show extraction differences as if they were competitor changes."
+    ]
+  }
+}

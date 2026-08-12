@@ -1,0 +1,36 @@
+{
+  "sans": [
+    {
+      "weight": 400,
+      "style": "Regular",
+      "file": "brand/fonts/static/Geist-Regular.ttf"
+    },
+    {
+      "weight": 600,
+      "style": "SemiBold",
+      "file": "brand/fonts/static/Geist-SemiBold.ttf"
+    },
+    {
+      "weight": 700,
+      "style": "Bold",
+      "file": "brand/fonts/static/Geist-Bold.ttf"
+    }
+  ],
+  "mono": [
+    {
+      "weight": 400,
+      "style": "Regular",
+      "file": "brand/fonts/static/GeistMono-Regular.ttf"
+    },
+    {
+      "weight": 600,
+      "style": "SemiBold",
+      "file": "brand/fonts/static/GeistMono-SemiBold.ttf"
+    },
+    {
+      "weight": 700,
+      "style": "Bold",
+      "file": "brand/fonts/static/GeistMono-Bold.ttf"
+    }
+  ]
+}
