@@ -25,13 +25,18 @@ AiSDR (adjacent) · 11x (aspirational). 14 pages captured.
 | Instantly | $47/mo | flat + credits, unlimited mailboxes |
 | Apollo.io | $49/seat/mo | seats + credits (annual grant) |
 | Lemlist | $69/mo | flat, **unlimited users** |
-| Clay | not captured | Data Credits + Actions |
+| Clay | $54/mo ¹ | Data Credits + Actions |
 | AiSDR | $900/mo | managed outcome |
 | 11x | not published | — |
 
+¹ **Corrected within the baseline run.** This row first read "not captured" — Clay's
+pricing table was invisible to Playwright. Switching the primary fetch path to
+Firecrawl captured it properly ($54–486/mo credits, $60–540/mo actions, bundles at
+$167 and $446), so the row is sourced rather than blank. Recorded here rather than
+silently overwritten, because which conclusions moved is itself worth seeing.
+
 **Watch list for next month:**
 - Lemlist raised prices in Feb 2026 per third-party reports; watch for another move.
-- Clay's plan prices need a working capture — currently JS-gated.
 - Apollo's `/product` URL redirects to home; the tracked page list needs fixing.
 - Whether anyone else adopts unlimited-user pricing — that would confirm the shift
   away from per-seat rather than it being Lemlist's tactic alone.

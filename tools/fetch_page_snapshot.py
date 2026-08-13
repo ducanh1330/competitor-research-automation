@@ -286,6 +286,22 @@ def capture(url: str, out_dir: Path, page_type: str, timeout_ms: int, full_page:
 
 MIN_USEFUL_CHARS = 400  # below this, treat an extraction as having failed
 
+# Firecrawl API version — pinned deliberately, not inherited.
+#
+# v2 exists and is live; both were probed on 2026-08-14 and return the same
+# top-level shape (success/data/markdown/metadata). We stay on v1 because the
+# entire 2026-08 baseline was captured with it, and the cardinal rule of this
+# pipeline is that a baseline is never fetched two different ways — a version
+# bump that extracts even slightly differently would surface as competitor
+# "changes" that never happened.
+#
+# To migrate: bump this, re-capture the WHOLE set in one go, and note the switch
+# in the changelog. The one known request-shape change is the screenshot format —
+# v1 takes the string "screenshot@fullPage" inside `formats`, v2 takes an object
+# {"type": "screenshot", "fullPage": true}. Verify against one page before
+# committing the run.
+FIRECRAWL_API_VERSION = "v1"
+
 
 def firecrawl_key() -> str | None:
     try:
@@ -318,7 +334,7 @@ def capture_firecrawl(url: str, out_dir: Path, page_type: str) -> dict | None:
         import httpx
 
         response = httpx.post(
-            "https://api.firecrawl.dev/v1/scrape",
+            f"https://api.firecrawl.dev/{FIRECRAWL_API_VERSION}/scrape",
             headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
             json={
                 "url": url,

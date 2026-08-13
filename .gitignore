@@ -25,8 +25,7 @@ research/snapshots/**/*.html
 research/snapshots/**/*.png
 
 # Print intermediate from `render_report.py --keep-html`. The PDF is the
-# deliverable; report_web.html is the published web version. This one is just
-# what Chromium consumed on the way to the PDF.
+# deliverable; this is just what Chromium consumed on the way to it.
 research/reports/**/report.html
 
 # Python

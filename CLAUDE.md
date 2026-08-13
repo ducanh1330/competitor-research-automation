@@ -78,10 +78,16 @@ change detection needs a real baseline to diff against, so snapshots must surviv
 Git history *is* the tracking mechanism. Do not treat `research/` as regenerable —
 re-fetching cannot recover what a competitor's page said last month.
 
-**Current state:** The DOZ.AI competitor analysis system is built. `brand/brand.json`
-is extracted and validating; six tools and four workflows exist. Remaining: the
-business profile interview (`workflows/capture_business_profile.md`), which is the
-last blocking input before the first real run.
+**Current state:** The DOZ.AI competitor analysis system is built and has completed
+its first end-to-end run. `brand/brand.json` validates; six tools and four
+workflows exist; `profile/company.json` is captured; the 2026-08 baseline is in
+`research/` (7 competitors, 14 pages, all fetched via Firecrawl). Next run is a
+**recurring** one, so the diff step in `competitor_analysis_run.md` applies.
+
+**The PDF is the only report format.** An HTML/web renderer existed and was removed
+on 2026-08-14 — one deliverable, one renderer. Do not reintroduce a second output
+path without asking: the two duplicated ~150 lines of helpers and each chart, and
+the web one had silently drifted out of the evidence-rule gate.
 
 `tools/README.md` documents the tool conventions: argparse inputs, secrets from `.env`
 only, results written to `.tmp/` with the path printed on stdout, progress on stderr,
@@ -114,13 +120,23 @@ that is a bug in `brand.json`, not licence to invent a value.
   - Sync after pulling: `uv sync`
 - **Python:** the project venv (`.venv`) is **3.14.7**; `requires-python = ">=3.12"`. Note that bare `python` on PATH is a separate 3.12 install — always go through `uv run` so tools get the project env and its dependencies.
 - **Ambient `VIRTUAL_ENV` warning:** the shell has a uv-managed 3.14 env exported, so every `uv` command prints a "does not match the project environment path `.venv`" warning. It's harmless — uv correctly ignores it and uses `.venv`.
-- **Installed:** `python-dotenv`, `jinja2`, `playwright`, `jsonschema`, `selectolax`, `httpx`, `matplotlib`, `pillow` (`fontTools` arrives via matplotlib and is used for font licence checks).
+- **Installed:** `python-dotenv`, `jinja2`, `playwright`, `selectolax`, `httpx`, `matplotlib`, `numpy`, `pillow` (`fontTools` arrives via matplotlib and is used for font licence checks).
 - **One-time setup after `uv sync`:** `uv run playwright install chromium`. Chromium is used for *both* page scraping and PDF rendering — one dependency, two jobs.
 - **Scraping: Firecrawl is primary**, configured via `FIRECRAWL_API_KEY` in `.env`. Local Playwright runs automatically as a fallback whenever Firecrawl fails, hits its quota, or no key is set — so a run degrades rather than stopping. `--no-firecrawl` forces the local path and consumes no credits. Discovery still uses built-in web search (no key).
 - **Why Firecrawl leads:** it renders JS-gated content local Chromium misses. Apollo's homepage yielded 225 chars via Playwright and 9,182 via Firecrawl; Clay's pricing table was entirely invisible to Playwright and is fully captured by Firecrawl. Quota maths: ~14 pages/run against a 500-credit free tier is roughly 35 runs.
 - **Never mix fetch methods within a baseline.** The two extract differently, so a mixed set makes the next diff report extraction artifacts as competitor changes. `meta.json` records `fetched_via`, and `diff_snapshots.py` warns on a mismatch.
-- **No test suite or linter is configured yet** — if one is added, record the command here.
-- **Git:** initialized, no commits yet. `.env`, `credentials.json`, `token.json`, `.venv/`, and `.tmp/` contents are gitignored. `research/` is intentionally **not** ignored.
+- **Tests:** `uv run python -m unittest discover -s tests` (stdlib `unittest`, no extra
+  dependency). `tests/test_validate_brand.py` injects one defect at a time into the real
+  `brand.json` and asserts the matching check fires — 18 cases covering raw hex in tokens,
+  non-grey colours under the monochrome rule, a lying contrast ratio, missing assets and
+  fonts, false chart provenance, and an unapproved or too-faint accent. Run it after any
+  change to `validate_brand.py`; softening a check leaves the real file still passing, so
+  nothing else would catch it. No linter is configured — if one is added, record it here.
+- **`validate_brand.py` accumulates into module-level `errors`/`warnings` lists.** Fine for
+  a one-shot CLI, but anything calling its checks twice in one process must clear them
+  first (`tests/test_validate_brand.py:run_checks` does).
+- **Git:** initialized on `main`. `.env`, `credentials.json`, `token.json`, `.venv/`, and `.tmp/` contents are gitignored. `research/` is intentionally **not** ignored, except snapshot `.html`/`.png` payloads and the `--keep-html` print intermediate — see the reasoning in `.gitignore`.
+- **OneDrive gotcha:** the repo lives under OneDrive, which holds file locks. `uv remove` can edit `pyproject.toml`/`uv.lock` successfully and still fail to prune `.venv` with "Access is denied (os error 5)". The dependency change is real; the stale package just stays on disk. Re-run `uv sync` later or ignore it.
 - **PowerShell gotcha:** `[` and `]` in a path are treated as wildcards. `Invoke-WebRequest -OutFile "Geist[wght].ttf"` fails with a misleading "Unable to find the specified file" — use a plain filename.
 
 ## Bottom Line

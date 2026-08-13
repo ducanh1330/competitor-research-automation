@@ -563,8 +563,9 @@ def has_price(row) -> bool:
 def with_leverage(recommendations: list[dict] | None) -> list[dict] | None:
     """Attach a computed 'quick win / balanced / heavy' tag to each recommendation.
 
-    Mirrors the web renderer's logic exactly (tools/render_report_web.py,
-    recs_html) so the same recommendation reads identically in both outputs.
+    Derived rather than authored so the tag cannot contradict the impact and
+    effort values printed beside it — analysis.json states those two, and this
+    is the only place the third is computed from them.
     """
     if not recommendations:
         return recommendations

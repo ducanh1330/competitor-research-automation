@@ -1,6 +1,6 @@
 # competitor-research-automation
 
-Automated monthly competitor research where **every claim in the report traces to a dated snapshot of the page it came from** — or is explicitly flagged as inferred. It discovers competitors from a business profile, captures their pages on a fixed cadence, diffs them month over month, and renders a brand-styled PDF and web report.
+Automated monthly competitor research where **every claim in the report traces to a dated snapshot of the page it came from** — or is explicitly flagged as inferred. It discovers competitors from a business profile, captures their pages on a fixed cadence, diffs them month over month, and renders a brand-styled PDF.
 
 Built on a **WAT** architecture — Workflows, Agents, Tools — which keeps probabilistic AI on the judgment calls and deterministic Python on everything that has to be repeatable.
 
@@ -39,7 +39,7 @@ Business profile ─► AI discovery ─► YOU APPROVE the set ─┐
                     │ 4. render_report.py         (deterministic) │
                     └─────────────────────────────────────────────┘
                                                           ▼
-                                          Branded PDF + web report
+                                                   Branded PDF
 ```
 
 **Workflows** (`workflows/`) are markdown SOPs — the objective, inputs, tool sequence, expected output, and how to handle each failure mode. **Agents** read the workflow and orchestrate. **Tools** (`tools/`) do the execution and never make judgment calls.
@@ -50,8 +50,7 @@ Business profile ─► AI discovery ─► YOU APPROVE the set ─┐
 |---|---|
 | `fetch_page_snapshot.py` | Captures one page → raw HTML, extracted markdown, full-page screenshot, and metadata with a content hash. Firecrawl primary, local Playwright as automatic fallback. |
 | `diff_snapshots.py` | Compares two snapshot dates. Hash-equal pages are skipped; changed pages get a unified diff plus a dedicated price-change delta. |
-| `render_report.py` | `analysis.json` + `brand.json` → branded PDF, charts drawn with matplotlib. |
-| `render_report_web.py` | Same data → a self-contained, theme-aware HTML page. |
+| `render_report.py` | `analysis.json` + `brand.json` → branded PDF, charts drawn with matplotlib. Refuses to render an unsourced claim. |
 | `validate_brand.py` | Gate on `brand.json`. Recomputes contrast, reads font embedding permission out of the binary, verifies assets exist. |
 | `derive_logo_variants.py` | Splits the supplied lockup into symbol-only and reversed variants; measures the clear-space unit. |
 | `build_font_instances.py` | Generates static weight instances from the variable fonts. |
@@ -122,7 +121,13 @@ Two settings matter and are easy to get wrong:
 
 `brand/brand.json` is the single source of truth. Nothing else in the repo contains a hex code, font name, or logo path — if the renderer needs a value that is missing there, that is a bug in `brand.json`, not licence to invent one.
 
-`validate_brand.py` does not trust the file. Contrast ratios are **recomputed** from the hex codes rather than read from the stored numbers, and font embedding permission is read from the OS/2 table rather than from an `embeddable: true` flag. It was tested against nine injected defects — missing assets, raw hex in tokens, non-grey colours under a monochrome rule, a deliberately *lying* contrast ratio — and catches all nine.
+`validate_brand.py` does not trust the file. Contrast ratios are **recomputed** from the hex codes rather than read from the stored numbers, and font embedding permission is read from the OS/2 table rather than from an `embeddable: true` flag.
+
+That property is guarded by `tests/test_validate_brand.py`, which injects one defect at a time into the real `brand.json` — missing assets, raw hex in tokens, non-grey colours under the monochrome rule, a deliberately *lying* contrast ratio, an unapproved accent — and asserts the matching check fires:
+
+```bash
+uv run python -m unittest discover -s tests
+```
 
 The bundled example brand is strictly monochrome. Where that genuinely conflicted with a chart needing to separate several series, the resolution was a documented, user-approved extension recorded in `brand.json` with its own scope and restrictions — not a silently-added colour.
 
