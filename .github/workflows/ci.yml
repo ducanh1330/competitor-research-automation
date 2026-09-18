@@ -18,8 +18,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install ruff
-        run: pip install ruff
+      - name: Install tooling and test dependencies
+        run: pip install ruff fonttools pillow
 
       - name: Lint (syntax errors and undefined names)
         run: ruff check --select=E9,F63,F7,F82 .
@@ -31,4 +31,7 @@ jobs:
         run: python -m compileall -q tools
 
       - name: Run unit tests
+        # fonttools/pillow are required: validate_brand skips the font-embedding
+        # and logo-asset checks when they are missing, which silently disables
+        # two regression tests.
         run: python -m unittest discover -s tests -v
